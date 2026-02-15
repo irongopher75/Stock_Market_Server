@@ -1,0 +1,16 @@
+fastapi
+uvicorn
+python-dotenv
+python-multipart
+python-jose[cryptography]
+passlib[bcrypt]
+bcrypt
+motor
+beanie
+yfinance
+pandas
+scikit-learn
+requests
+httpx
+pydantic[email]
+dnspython
