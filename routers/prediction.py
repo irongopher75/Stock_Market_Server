@@ -25,6 +25,33 @@ SYMBOL_FILE = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", "
 # Key: (user_id, symbol)
 symbol_locks: Dict[tuple, asyncio.Lock] = {}
 
+@router.get("/symbols/{exchange}")
+async def get_exchange_symbols(exchange: str):
+    """Returns a list of top symbols for the requested exchange."""
+    exchange = exchange.lower()
+    
+    # Map valid exchanges to their data files
+    exchange_files = {
+        "nse": "nse_symbols.json",
+        "bse": "bse_symbols.json",
+        "us": "us_symbols.json",
+        "japan": "japan_symbols.json"
+    }
+    
+    if exchange not in exchange_files:
+        raise HTTPException(status_code=404, detail="Exchange not supported")
+        
+    file_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "data", exchange_files[exchange])
+    
+    try:
+        if os.path.exists(file_path):
+            with open(file_path, 'r') as f:
+                return json.load(f)
+        return []
+    except Exception as e:
+        logger.error(f"Error loading symbols for {exchange}: {e}")
+        return []
+
 @router.get("/{symbol}")
 async def get_prediction(
     symbol: str, 
@@ -138,15 +165,3 @@ async def get_history(
     current_user: models.User = Depends(auth.get_current_admin)
 ):
     return await models.PredictionLog.find().sort("-timestamp").limit(50).to_list()
-
-@router.get("/symbols/nse")
-async def get_nse_symbols():
-    """Returns a list of top NSE symbols from data file."""
-    try:
-        if os.path.exists(SYMBOL_FILE):
-            with open(SYMBOL_FILE, 'r') as f:
-                return json.load(f)
-        return []
-    except Exception as e:
-        logger.error(f"Error loading symbols: {e}")
-        return []

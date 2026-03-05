@@ -1,0 +1,217 @@
+[
+    {
+        "symbol": "NVDA",
+        "name": "NVIDIA Corporation",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "AAPL",
+        "name": "Apple Inc.",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "MSFT",
+        "name": "Microsoft Corporation",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "GOOGL",
+        "name": "Alphabet Inc.",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "AMZN",
+        "name": "Amazon.com, Inc.",
+        "sector": "Consumer Cyclical"
+    },
+    {
+        "symbol": "META",
+        "name": "Meta Platforms, Inc.",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "TSM",
+        "name": "Taiwan Semiconductor",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "TSLA",
+        "name": "Tesla, Inc.",
+        "sector": "Automobile"
+    },
+    {
+        "symbol": "AVGO",
+        "name": "Broadcom Inc.",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "BRK-B",
+        "name": "Berkshire Hathaway Inc.",
+        "sector": "Financials"
+    },
+    {
+        "symbol": "WMT",
+        "name": "Walmart Inc.",
+        "sector": "Retail"
+    },
+    {
+        "symbol": "LLY",
+        "name": "Eli Lilly and Company",
+        "sector": "Healthcare"
+    },
+    {
+        "symbol": "JPM",
+        "name": "JPMorgan Chase & Co.",
+        "sector": "Financials"
+    },
+    {
+        "symbol": "XOM",
+        "name": "Exxon Mobil Corporation",
+        "sector": "Energy"
+    },
+    {
+        "symbol": "V",
+        "name": "Visa Inc.",
+        "sector": "Financials"
+    },
+    {
+        "symbol": "JNJ",
+        "name": "Johnson & Johnson",
+        "sector": "Healthcare"
+    },
+    {
+        "symbol": "ASML",
+        "name": "ASML Holding N.V.",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "MA",
+        "name": "Mastercard Incorporated",
+        "sector": "Financials"
+    },
+    {
+        "symbol": "MU",
+        "name": "Micron Technology, Inc.",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "COST",
+        "name": "Costco Wholesale Corporation",
+        "sector": "Retail"
+    },
+    {
+        "symbol": "UNH",
+        "name": "UnitedHealth Group Incorporated",
+        "sector": "Healthcare"
+    },
+    {
+        "symbol": "PG",
+        "name": "Procter & Gamble Company",
+        "sector": "Consumer Goods"
+    },
+    {
+        "symbol": "ORCL",
+        "name": "Oracle Corporation",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "ABBV",
+        "name": "AbbVie Inc.",
+        "sector": "Healthcare"
+    },
+    {
+        "symbol": "BAC",
+        "name": "Bank of America Corporation",
+        "sector": "Financials"
+    },
+    {
+        "symbol": "HD",
+        "name": "Home Depot, Inc.",
+        "sector": "Retail"
+    },
+    {
+        "symbol": "CVX",
+        "name": "Chevron Corporation",
+        "sector": "Energy"
+    },
+    {
+        "symbol": "KO",
+        "name": "Coca-Cola Company",
+        "sector": "Consumer Goods"
+    },
+    {
+        "symbol": "CRM",
+        "name": "Salesforce, Inc.",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "PFE",
+        "name": "Pfizer Inc.",
+        "sector": "Healthcare"
+    },
+    {
+        "symbol": "PEP",
+        "name": "PepsiCo, Inc.",
+        "sector": "Consumer Goods"
+    },
+    {
+        "symbol": "MRK",
+        "name": "Merck & Co., Inc.",
+        "sector": "Healthcare"
+    },
+    {
+        "symbol": "NFLX",
+        "name": "Netflix, Inc.",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "ADBE",
+        "name": "Adobe Inc.",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "CSCO",
+        "name": "Cisco Systems, Inc.",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "CMCSA",
+        "name": "Comcast Corporation",
+        "sector": "Telecom"
+    },
+    {
+        "symbol": "DIS",
+        "name": "Walt Disney Company",
+        "sector": "Entertainment"
+    },
+    {
+        "symbol": "WFC",
+        "name": "Wells Fargo & Company",
+        "sector": "Financials"
+    },
+    {
+        "symbol": "VZ",
+        "name": "Verizon Communications Inc.",
+        "sector": "Telecom"
+    },
+    {
+        "symbol": "T",
+        "name": "AT&T Inc.",
+        "sector": "Telecom"
+    },
+    {
+        "symbol": "INTC",
+        "name": "Intel Corporation",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "QCOM",
+        "name": "QUALCOMM Incorporated",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "MCD",
+        "name": "McDonald's Corporation",
+        "sector": "Consumer Cyclical"
+    }
+]

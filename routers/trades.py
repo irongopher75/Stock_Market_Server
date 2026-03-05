@@ -21,17 +21,18 @@ async def get_active_positions(
         for s in symbols:
             if s == "NIFTY": yf_symbols.append("^NSEI")
             elif s == "BANKNIFTY": yf_symbols.append("^NSEBANK")
-            else: yf_symbols.append(f"{s}.NS")
+            elif "." not in s and not s.startswith("^"): yf_symbols.append(f"{s}.NS")
+            else: yf_symbols.append(s)
             
         try:
             import asyncio
             data_df = await asyncio.to_thread(yf.download, yf_symbols, period="1d", interval="1m", progress=False)
             data = data_df['Close']
             for trade in active_trades:
-                price_col = trade.symbol
                 if trade.symbol == "NIFTY": price_col = "^NSEI"
                 elif trade.symbol == "BANKNIFTY": price_col = "^NSEBANK"
-                else: price_col = f"{trade.symbol}.NS"
+                elif "." not in trade.symbol and not trade.symbol.startswith("^"): price_col = f"{trade.symbol}.NS"
+                else: price_col = trade.symbol
                 
                 try:
                     current_price = data[price_col].iloc[-1] if len(yf_symbols) > 1 else data.iloc[-1]
@@ -128,7 +129,8 @@ async def get_performance_snapshot(
         for s in symbols:
             if s == "NIFTY": yf_symbols.append("^NSEI")
             elif s == "BANKNIFTY": yf_symbols.append("^NSEBANK")
-            else: yf_symbols.append(f"{s}.NS")
+            elif "." not in s and not s.startswith("^"): yf_symbols.append(f"{s}.NS")
+            else: yf_symbols.append(s)
             
         import asyncio
         data_df = await asyncio.to_thread(yf.download, yf_symbols, period="1d", interval="1m", progress=False)
@@ -139,7 +141,8 @@ async def get_performance_snapshot(
             price_col = trade.symbol
             if trade.symbol == "NIFTY": price_col = "^NSEI"
             elif trade.symbol == "BANKNIFTY": price_col = "^NSEBANK"
-            else: price_col = f"{trade.symbol}.NS"
+            elif "." not in trade.symbol and not trade.symbol.startswith("^"): price_col = f"{trade.symbol}.NS"
+            else: price_col = trade.symbol
             
             try:
                 current_price = data[price_col].iloc[-1] if len(yf_symbols) > 1 else data.iloc[-1]

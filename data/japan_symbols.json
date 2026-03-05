@@ -1,0 +1,102 @@
+[
+    {
+        "symbol": "7203.T",
+        "name": "Toyota Motor",
+        "sector": "Automobile"
+    },
+    {
+        "symbol": "8306.T",
+        "name": "Mitsubishi UFJ Financial",
+        "sector": "Financials"
+    },
+    {
+        "symbol": "6758.T",
+        "name": "Sony Group",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "6861.T",
+        "name": "Keyence",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "9432.T",
+        "name": "Nippon Telegraph and Telephone",
+        "sector": "Telecom"
+    },
+    {
+        "symbol": "9984.T",
+        "name": "SoftBank Group",
+        "sector": "Telecom"
+    },
+    {
+        "symbol": "8035.T",
+        "name": "Tokyo Electron",
+        "sector": "Technology"
+    },
+    {
+        "symbol": "8058.T",
+        "name": "Mitsubishi Corp",
+        "sector": "Conglomerate"
+    },
+    {
+        "symbol": "9983.T",
+        "name": "Fast Retailing",
+        "sector": "Retail"
+    },
+    {
+        "symbol": "6869.T",
+        "name": "Sysmex",
+        "sector": "Healthcare"
+    },
+    {
+        "symbol": "4063.T",
+        "name": "Shin-Etsu Chemical",
+        "sector": "Materials"
+    },
+    {
+        "symbol": "8316.T",
+        "name": "Sumitomo Mitsui Financial",
+        "sector": "Financials"
+    },
+    {
+        "symbol": "7974.T",
+        "name": "Nintendo",
+        "sector": "Entertainment"
+    },
+    {
+        "symbol": "7267.T",
+        "name": "Honda Motor",
+        "sector": "Automobile"
+    },
+    {
+        "symbol": "4502.T",
+        "name": "Takeda Pharmaceutical",
+        "sector": "Healthcare"
+    },
+    {
+        "symbol": "8001.T",
+        "name": "ITOCHU",
+        "sector": "Conglomerate"
+    },
+    {
+        "symbol": "6098.T",
+        "name": "Recruit Holdings",
+        "sector": "Services"
+    },
+    {
+        "symbol": "6501.T",
+        "name": "Hitachi",
+        "sector": "Engineering"
+    },
+    {
+        "symbol": "6902.T",
+        "name": "Denso",
+        "sector": "Automobile"
+    },
+    {
+        "symbol": "8031.T",
+        "name": "Mitsui & Co",
+        "sector": "Conglomerate"
+    }
+]
