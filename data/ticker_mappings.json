@@ -1,0 +1,5 @@
+{
+    "NIFTY": "^NSEI",
+    "BANKNIFTY": "^NSEBANK",
+    "FINNIFTY": "NIFTY_FIN_SERVICE.NS"
+}

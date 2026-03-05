@@ -1,7 +1,9 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
+from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from database import init_db
-from routers import users, admin, prediction
+from routers import users, admin, prediction, trades
 from contextlib import asynccontextmanager
 import os
 from dotenv import load_dotenv
@@ -24,8 +26,30 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+@app.exception_handler(RequestValidationError)
+async def validation_exception_handler(request: Request, exc: RequestValidationError):
+    import logging
+    logging.error(f"Validation Error: {exc.errors()}")
+    return JSONResponse(
+        status_code=422,
+        content={"detail": exc.errors()},
+    )
+
 # CORS Configuration
-origins = os.getenv("CORS_ORIGINS", "http://localhost:5173,http://localhost:5174,http://localhost:5175").split(",")
+# Include both localhost and 127.0.0.1 to prevent mismatches
+origins = [
+    "http://localhost:5173",
+    "http://localhost:5174",
+    "http://localhost:5175",
+    "http://127.0.0.1:5173",
+    "http://127.0.0.1:5174",
+    "http://127.0.0.1:5175",
+]
+
+# Allow additional origins from environment variable
+env_origins = os.getenv("CORS_ORIGINS")
+if env_origins:
+    origins.extend([o.strip() for o in env_origins.split(",") if o.strip()])
 
 app.add_middleware(
     CORSMiddleware,
@@ -35,10 +59,21 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+# Optional diagnostic middleware to log headers in dev
+@app.middleware("http")
+async def log_origin(request: Request, call_next):
+    origin = request.headers.get("origin")
+    if origin:
+        import logging
+        logging.info(f"Incoming Request Origin: {origin}")
+    response = await call_next(request)
+    return response
+
 # Include Routers
 app.include_router(users.router)
 app.include_router(admin.router)
 app.include_router(prediction.router)
+app.include_router(trades.router)
 
 @app.get("/")
 def read_root():
@@ -46,4 +81,4 @@ def read_root():
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=True)
+    uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)

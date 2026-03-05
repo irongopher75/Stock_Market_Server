@@ -2,6 +2,7 @@ import motor.motor_asyncio
 from beanie import init_beanie
 import os
 import models
+import recovery
 
 MONGODB_URL = os.getenv("MONGODB_URL", "mongodb://localhost:27017/stock_market_db")
 
@@ -14,6 +15,8 @@ async def init_db():
         database=client.get_default_database(),
         document_models=[
             models.User,
-            models.PredictionLog
+            models.PredictionLog,
+            models.Trade,
+            recovery.SystemState
         ]
     )

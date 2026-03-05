@@ -15,8 +15,10 @@ load_dotenv()
 
 MONGODB_URL = os.getenv("MONGODB_URL")
 
+import certifi
+
 async def create_admin():
-    client = motor.motor_asyncio.AsyncIOMotorClient(MONGODB_URL)
+    client = motor.motor_asyncio.AsyncIOMotorClient(MONGODB_URL, tlsCAFile=certifi.where())
     await init_beanie(database=client.get_default_database(), document_models=[User])
     
     email = "vishnu@123.com"

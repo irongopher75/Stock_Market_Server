@@ -1,7 +1,14 @@
 import numpy as np
+import config
 
 class RiskEngine:
-    def __init__(self, account_balance, win_rate=0.55, avg_win=1.5, avg_loss=1.0):
+    def __init__(
+        self, 
+        account_balance=config.INITIAL_BALANCE, 
+        win_rate=config.DEFAULT_WIN_RATE, 
+        avg_win=config.DEFAULT_AVG_WIN, 
+        avg_loss=config.DEFAULT_AVG_LOSS
+    ):
         self.account_balance = account_balance
         self.win_rate = win_rate
         self.avg_win = avg_win
@@ -26,8 +33,11 @@ class RiskEngine:
 
     def calculate_dynamic_stops(self, entry_price, atr, side="BUY", volatility_ratio=1.0):
         """
-        HFT Algo 5.2: Dynamic Stop Loss
+        HFT Algo 5.2: Dynamic Stop Loss with Hard Floor Constraints
         """
+        # Hard floor for minimum stop distance to avoid noise-outs in low vol
+        MIN_STOP_PCT = 0.005 # 0.5% minimum stop distance
+        
         # Adjust multiplier based on volatility
         multiplier = 2.0
         if volatility_ratio > 1.5:
@@ -35,12 +45,18 @@ class RiskEngine:
         elif volatility_ratio < 0.7:
             multiplier = 1.5
             
+        calculated_stop_dist = atr * multiplier
+        min_stop_dist = entry_price * MIN_STOP_PCT
+        
+        # Apply the absolute floor to stop distance
+        effective_stop_dist = max(calculated_stop_dist, min_stop_dist)
+            
         if side == "BUY":
-            stop_loss = entry_price - (atr * multiplier)
-            take_profit = entry_price + (atr * multiplier * 1.5)
+            stop_loss = entry_price - effective_stop_dist
+            take_profit = entry_price + (effective_stop_dist * 1.5)
         else:
-            stop_loss = entry_price + (atr * multiplier)
-            take_profit = entry_price - (atr * multiplier * 1.5)
+            stop_loss = entry_price + effective_stop_dist
+            take_profit = entry_price - (effective_stop_dist * 1.5)
             
         return {
             "stop_loss": round(stop_loss, 2),
@@ -65,3 +81,22 @@ class RiskEngine:
             "risk_amount": round(risk_amount, 2),
             **stops
         }
+        
+    def check_circuit_breakers(self, current_day_pnl: float, open_exposure: float) -> bool:
+        """
+        Portfolio-level risk circuit breaker.
+        Returns True if trading is ALLOWED, False if HALTED.
+        """
+        MAX_DAILY_DRAWDOWN_PCT = -0.03 # Stop trading at 3% daily loss
+        MAX_EXPOSURE_PCT = 0.50 # Max 50% of balance exposed
+        
+        # Check Daily Drawdown limit
+        current_drawdown_pct = current_day_pnl / self.account_balance
+        if current_drawdown_pct <= MAX_DAILY_DRAWDOWN_PCT:
+            return False # Halt trading, hard stop hit
+            
+        # Check Max Exposure limit
+        if (open_exposure / self.account_balance) >= MAX_EXPOSURE_PCT:
+            return False # Wait for positions to close
+            
+        return True

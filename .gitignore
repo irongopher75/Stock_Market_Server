@@ -50,3 +50,8 @@ server_error.log
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Frontend/Editor remnants
+node_modules/
+.idea/
+.vscode/

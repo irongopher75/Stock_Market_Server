@@ -1,31 +1,33 @@
 import yfinance as yf
 import pandas as pd
 import numpy as np
+import config
 
 class MarketAnalyzer:
     def __init__(self, symbol):
         self.symbol = symbol
         self.data = None
 
-    def fetch_data(self, period="1mo", interval="1h"):
-        # For NIFTY/BANKNIFTY use ^NSEI and ^NSEBANK
+    async def fetch_data(self, period="1mo", interval="1h"):
+        # 1. Resolve ticker from map or use direct symbol
         search_symbol = self.symbol.upper()
-        if search_symbol == "NIFTY":
-            search_symbol = "^NSEI"
-        elif search_symbol == "BANKNIFTY":
-            search_symbol = "^NSEBANK"
-        elif not search_symbol.endswith(".NS") and not search_symbol.startswith("^"):
-            search_symbol = f"{search_symbol}.NS"
+        search_symbol = config.TICKER_MAP.get(search_symbol, search_symbol)
+        
+        # 2. Apply default suffix if it's a plain equity ticker (no dot, no caret)
+        if "." not in search_symbol and not search_symbol.startswith("^"):
+            search_symbol = f"{search_symbol}{config.DEFAULT_TICKER_SUFFIX}"
             
         ticker = yf.Ticker(search_symbol)
-        self.data = ticker.history(period=period, interval=interval)
+        
+        import asyncio
+        self.data = await asyncio.to_thread(ticker.history, period=period, interval=interval)
+        
         if self.data.empty:
-            raise Exception(f"No data found for symbol {self.symbol}")
+            raise Exception(f"No data found for symbol {self.symbol} (Ticker: {search_symbol})")
             
         # --- HFT Algo 1.1: Real-Time Data Normalization ---
-        # 1. Outlier Detection (Price change > 10% in one step is often an error in low-frequency data)
-        # However, for HFT we use rolling median for sanity
-        rolling_median = self.data['Close'].rolling(window=20).median()
+        # 1. Outlier Detection
+        rolling_median = self.data['Close'].rolling(window=config.SMA_FAST).median()
         self.data['Close'] = np.where(
             (self.data['Close'] > rolling_median * 1.10) | (self.data['Close'] < rolling_median * 0.90),
             rolling_median,
@@ -36,7 +38,8 @@ class MarketAnalyzer:
         self.data.ffill(inplace=True)
         # --------------------------------------------------
 
-    def calculate_atr(self, window=14):
+    def calculate_atr(self, window=None):
+        window = window or config.ATR_WINDOW
         high_low = self.data['High'] - self.data['Low']
         high_close = np.abs(self.data['High'] - self.data['Close'].shift())
         low_close = np.abs(self.data['Low'] - self.data['Close'].shift())
@@ -50,24 +53,23 @@ class MarketAnalyzer:
         
         # RSI
         delta = close.diff()
-        gain = (delta.where(delta > 0, 0)).rolling(window=14).mean()
-        loss = (-delta.where(delta < 0, 0)).rolling(window=14).mean()
+        gain = (delta.where(delta > 0, 0)).rolling(window=config.RSI_WINDOW).mean()
+        loss = (-delta.where(delta < 0, 0)).rolling(window=config.RSI_WINDOW).mean()
         rs = gain / loss
         self.data['RSI'] = 100 - (100 / (1 + rs))
         
         # SMAs
-        self.data['SMA_20'] = close.rolling(window=20).mean()
-        self.data['SMA_50'] = close.rolling(window=50).mean()
-        self.data['SMA_200'] = close.rolling(window=200).mean()
+        self.data['SMA_20'] = close.rolling(window=config.SMA_FAST).mean()
+        self.data['SMA_50'] = close.rolling(window=config.SMA_MEDIUM).mean()
+        self.data['SMA_200'] = close.rolling(window=config.SMA_SLOW).mean()
 
         # --- HFT Algo 2.2: Adaptive MACD ---
-        # Adjust periods based on ATR percentage
         atr_pct = (self.data['ATR'] / close) * 100
         vol_ratio = atr_pct.iloc[-1]
         
-        if vol_ratio > 3.0: # High Vol
+        if vol_ratio > config.VOL_HIGH_THRESHOLD: # High Vol
             f, s, sig = 8, 17, 6
-        elif vol_ratio < 1.0: # Low Vol
+        elif vol_ratio < config.VOL_LOW_THRESHOLD: # Low Vol
             f, s, sig = 16, 35, 12
         else: # Normal
             f, s, sig = 12, 26, 9
@@ -78,17 +80,15 @@ class MarketAnalyzer:
         self.data['Signal_Line'] = self.data['MACD'].ewm(span=sig, adjust=False).mean()
         
         # --- HFT Algo 2.3: Dynamic Bollinger Bands ---
-        std = close.rolling(window=20).std()
-        # Multiplier adapts to volatility state
-        if vol_ratio > 4.0: multiplier = 2.5
-        elif vol_ratio < 1.5: multiplier = 1.5
+        std = close.rolling(window=config.SMA_FAST).std()
+        if vol_ratio > config.VOL_VERY_HIGH: multiplier = 2.5
+        elif vol_ratio < config.VOL_VERY_LOW: multiplier = 1.5
         else: multiplier = 2.0
         
         self.data['BB_Upper'] = self.data['SMA_20'] + (std * multiplier)
         self.data['BB_Lower'] = self.data['SMA_20'] - (std * multiplier)
         
-        # --- HFT Algo 2.5: Volume Profile (Basic POC/HVN) ---
-        # Divide recent data into bins
+        # --- HFT Algo 2.5: Volume Profile ---
         recent_data = self.data.tail(100)
         p_min, p_max = recent_data['Close'].min(), recent_data['Close'].max()
         if p_max > p_min:
@@ -105,17 +105,15 @@ class MarketAnalyzer:
         
         rsi = last_row['RSI']
         price = last_row['Close']
-        sma_50 = last_row['SMA_50']
         macd = last_row['MACD']
         signal = last_row['Signal_Line']
         bb_lower = last_row['BB_Lower']
         bb_upper = last_row['BB_Upper']
         volume = last_row['Volume']
-        avg_volume = self.data['Volume'].tail(20).mean()
+        avg_volume = self.data['Volume'].tail(config.MOMENTUM_LOOKBACK).mean()
         
         score = 0
         reasons = []
-        hft_strategy = "NEUTRAL"
         
         # --- HFT Strategy 3.1: Scalping Logic ---
         scalp_score = 0
@@ -123,15 +121,14 @@ class MarketAnalyzer:
         elif rsi > 70: scalp_score -= 2
         if macd > signal and prev_row['MACD'] <= prev_row['Signal_Line']: scalp_score += 2
         elif macd < signal and prev_row['MACD'] >= prev_row['Signal_Line']: scalp_score -= 2
-        if volume > avg_volume * 1.5:
-            scalp_score *= 1.5 # Volume confirmation
+        if volume > avg_volume * config.VOL_确认_RATIO:
+            scalp_score *= 1.5
             reasons.append("Scalping: Volume spike detected.")
 
         # --- HFT Strategy 3.2: Momentum Breakout ---
-        recent_high = self.data['High'].tail(20).max()
-        recent_low = self.data['Low'].tail(20).min()
-        if price > recent_high * 0.995:
-            reasons.append("Momentum: Price near 20-period high.")
+        recent_high = self.data['High'].tail(config.MOMENTUM_LOOKBACK).max()
+        if price > recent_high * config.MOMENTUM_PROXIMITY:
+            reasons.append("Momentum: Price near local high.")
             if volume > avg_volume * 1.3:
                 score += 2
                 reasons.append("Momentum: Breakout confirmed by volume.")
@@ -148,10 +145,10 @@ class MarketAnalyzer:
         if self.poc_price:
             if price > self.poc_price:
                 score += 1
-                reasons.append(f"Trend: Above Volume POC ({round(self.poc_price, 2)}).")
+                reasons.append(f"Trend: Above Volume POC.")
             else:
                 score -= 1
-                reasons.append(f"Trend: Below Volume POC ({round(self.poc_price, 2)}).")
+                reasons.append(f"Trend: Below Volume POC.")
 
         # Composite Scoring
         total_score = score + (scalp_score * 0.5)
@@ -160,37 +157,53 @@ class MarketAnalyzer:
         confidence = 0.5
         suggested_strategy = "Waiting for clearer signals"
         
-        if total_score >= 3:
+        if total_score >= config.BULLISH_SCORE_THRESHOLD:
             prediction = "BULLISH"
             confidence = min(0.6 + (total_score * 0.05), 0.95)
             suggested_strategy = "HFT High Confidence Bullish - Buy ITM Call (CE)"
-        elif total_score >= 1:
+        elif total_score >= config.MOD_BULLISH_THRESHOLD:
             prediction = "BULLISH"
             confidence = 0.65
             suggested_strategy = "HFT Moderate Bullish - Buy ATM Call (CE)"
-        elif total_score <= -3:
+        elif total_score <= config.BEARISH_SCORE_THRESHOLD:
             prediction = "BEARISH"
             confidence = min(0.6 + (abs(total_score) * 0.05), 0.95)
             suggested_strategy = "HFT High Confidence Bearish - Buy ITM Put (PE)"
-        elif total_score <= -1:
+        elif total_score <= config.MOD_BEARISH_THRESHOLD:
             prediction = "BEARISH"
             confidence = 0.65
             suggested_strategy = "HFT Moderate Bearish - Buy ATM Put (PE)"
             
-        return {
+        return self._sanitize({
             "prediction": prediction,
             "confidence": round(confidence, 2),
             "rsi": round(rsi, 2),
             "macd": round(macd, 4),
-            "sma_50": round(sma_50, 2),
+            "sma_20": round(last_row['SMA_20'], 2),
+            "sma_50": round(last_row['SMA_50'], 2),
+            "sma_200": round(last_row['SMA_200'], 2),
+            "bb_upper": round(bb_upper, 2),
+            "bb_lower": round(bb_lower, 2),
             "current_price": round(price, 2),
             "strategy": suggested_strategy,
             "reasoning": " | ".join(reasons) if reasons else "No dominant HFT signals detected.",
-            "poc": round(self.poc_price, 2) if self.poc_price else None
-        }
+            "poc": round(self.poc_price, 2) if self.poc_price else None,
+            "vol_ratio": round((last_row['ATR'] / price) * 100, 2)
+        })
 
-    def generate_payoff_graph(self, option_type, strike, premium):
-        spots = np.linspace(strike * 0.9, strike * 1.1, 20)
+    def _sanitize(self, obj):
+        if isinstance(obj, dict):
+            return {k: self._sanitize(v) for k, v in obj.items()}
+        elif isinstance(obj, list):
+            return [self._sanitize(v) for v in obj]
+        elif isinstance(obj, float) and (np.isnan(obj) or np.isinf(obj)):
+            return None
+        return obj
+
+    def generate_payoff_graph(self, option_type, strike, premium=None):
+        premium = premium or config.OPTION_PREMIUM_DEFAULT
+        scan_range = config.OPTION_SCAN_RANGE
+        spots = np.linspace(strike * (1 - scan_range), strike * (1 + scan_range), 20)
         payoffs = []
         for s in spots:
             if option_type == "CE":
