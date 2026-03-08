@@ -17,19 +17,28 @@ async def get_news_feed(
     Returns real, ranked, categorized news from Finnhub and GDELT.
     Sorted by severity score (highest first), then recency.
     """
-    articles = await news_service.get_feed(limit=100)
+    try:
+        articles = await news_service.get_feed(limit=100)
 
-    if category != "ALL" and category.upper() in VALID_CATEGORIES:
-        articles = [a for a in articles if a.get("category") == category.upper()]
+        if category != "ALL" and category.upper() in VALID_CATEGORIES:
+            articles = [a for a in articles if a.get("category") == category.upper()]
 
-    if severity != "ALL" and severity.upper() in {"RED", "AMBER", "GREEN"}:
-        articles = [a for a in articles if a.get("severity") == severity.upper()]
+        if severity != "ALL" and severity.upper() in {"RED", "AMBER", "GREEN"}:
+            articles = [a for a in articles if a.get("severity") == severity.upper()]
 
-    return {
-        "count": len(articles[:limit]),
-        "articles": articles[:limit],
-        "cached": True,
-    }
+        return {
+            "count": len(articles[:limit]),
+            "articles": articles[:limit],
+            "cached": True,
+        }
+    except Exception as e:
+        logger.error(f"News feed error: {e}")
+        return {
+            "count": 0,
+            "articles": [],
+            "error": str(e),
+            "cached": False
+        }
 
 @router.post("/refresh")
 async def force_refresh():

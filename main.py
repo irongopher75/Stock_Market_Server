@@ -55,12 +55,18 @@ origins = [
     "http://127.0.0.1:5173",
     "http://127.0.0.1:5174",
     "http://127.0.0.1:5175",
+    "http://0.0.0.0:5173",
+    "http://0.0.0.0:5174",
+    "http://0.0.0.0:5175",
 ]
 
 # Allow additional origins from environment variable
 env_origins = os.getenv("CORS_ORIGINS")
 if env_origins:
-    origins.extend([o.strip() for o in env_origins.split(",") if o.strip()])
+    if env_origins == "*":
+        origins = ["*"]
+    else:
+        origins.extend([o.strip() for o in env_origins.split(",") if o.strip()])
 
 app.add_middleware(
     CORSMiddleware,

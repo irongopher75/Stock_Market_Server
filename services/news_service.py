@@ -138,14 +138,21 @@ class NewsIntelligenceService:
                 "https://finnhub.io/api/v1/news",
                 params={"category": "general", "token": FINNHUB_KEY}
             )
-            items = resp.json() if resp.status_code == 200 else []
+            try:
+                items = resp.json() if resp.status_code == 200 else []
+            except Exception:
+                items = []
 
             # Also grab crypto news
             resp2 = await client.get(
                 "https://finnhub.io/api/v1/news",
                 params={"category": "crypto", "token": FINNHUB_KEY}
             )
-            items += resp2.json() if resp2.status_code == 200 else []
+            try:
+                crypto_items = resp2.json() if resp2.status_code == 200 else []
+                items += crypto_items
+            except Exception:
+                pass
 
             for item in items[:60]:
                 ts = item.get("datetime", 0)
@@ -178,7 +185,11 @@ class NewsIntelligenceService:
                 )
                 if resp.status_code != 200:
                     return []
-                data = resp.json()
+                try:
+                    data = resp.json()
+                except Exception:
+                    logger.warning(f"GDELT returned non-JSON for '{query}'")
+                    return []
                 out = []
                 for item in (data.get("articles") or []):
                     title = item.get("title", "").strip()
