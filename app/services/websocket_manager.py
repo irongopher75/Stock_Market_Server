@@ -95,12 +95,23 @@ class WebSocketManager:
         """Broadcasts only the changed/new vessels (diff) to save bandwidth."""
         current_map = {v['mmsi']: v for v in current}
         
-        updated = [
-            v for mmsi, v in current_map.items()
-            if mmsi not in self.last_vessel_state or 
-            self.last_vessel_state[mmsi].get('lat') != v.get('lat') or
-            self.last_vessel_state[mmsi].get('lon') != v.get('lon')
-        ]
+        updated = []
+        for mmsi, v in current_map.items():
+            prev = self.last_vessel_state.get(mmsi)
+            if not prev:
+                updated.append(v)
+                continue
+            
+            # Threshold: only update if position changed by > 0.0001 (~10m)
+            pos_changed = (
+                abs(prev.get('lat', 0) - v.get('lat', 0)) > 0.0001 or
+                abs(prev.get('lon', 0) - v.get('lon', 0)) > 0.0001
+            )
+            # Or if status/speed changed significantly
+            status_changed = prev.get('speed') != v.get('speed')
+            
+            if pos_changed or status_changed:
+                updated.append(v)
         
         removed = [
             mmsi for mmsi in self.last_vessel_state
@@ -117,23 +128,34 @@ class WebSocketManager:
                 "timestamp": asyncio.get_event_loop().time()
             }
             await self.broadcast_to_clients(message)
-            self.last_vessel_state = current_map
+        
+        # Always maintain full state in the hub for next diff
+        self.last_vessel_state = current_map
 
     async def broadcast_aircraft_data(self, current: list):
-        """Broadcasts only the changed/new aircraft (diff)."""
-        # Assuming aircraft have a unique 'callsign' or 'icao24'
-        current_map = {a['callsign']: a for a in current}
+        """Broadcasts only the changed/new aircraft (diff) using icao24 as key."""
+        current_map = {a['icao24']: a for a in current}
         
-        updated = [
-            a for callsign, a in current_map.items()
-            if callsign not in self.last_aircraft_state or 
-            self.last_aircraft_state[callsign].get('lat') != a.get('lat') or
-            self.last_aircraft_state[callsign].get('lon') != a.get('lon')
-        ]
+        updated = []
+        for icao, a in current_map.items():
+            prev = self.last_aircraft_state.get(icao)
+            if not prev:
+                updated.append(a)
+                continue
+            
+            # Threshold for aircraft is looser since they move faster
+            pos_changed = (
+                abs(prev.get('lat', 0) - a.get('lat', 0)) > 0.001 or
+                abs(prev.get('lon', 0) - a.get('lon', 0)) > 0.001
+            )
+            alt_changed = abs(prev.get('altitude_ft', 0) - a.get('altitude_ft', 0)) > 100
+            
+            if pos_changed or alt_changed:
+                updated.append(a)
         
         removed = [
-            callsign for callsign in self.last_aircraft_state
-            if callsign not in current_map
+            icao for icao in self.last_aircraft_state
+            if icao not in current_map
         ]
         
         if updated or removed:
@@ -146,7 +168,8 @@ class WebSocketManager:
                 "timestamp": asyncio.get_event_loop().time()
             }
             await self.broadcast_to_clients(message)
-            self.last_aircraft_state = current_map
+        
+        self.last_aircraft_state = current_map
 
     async def _broadcast_trade(self, trades: list):
         """Normalize and broadcast Finnhub trade data."""
