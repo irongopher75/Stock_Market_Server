@@ -1,0 +1,3097 @@
+[
+    {
+        "symbol": "III.L",
+        "name": "3I Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "3IN.L",
+        "name": "3I Inf. Ord",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FOUR.L",
+        "name": "4Imprint Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "888.L",
+        "name": "888 Hldgs",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ABF.L",
+        "name": "A.B.Food",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AA.L",
+        "name": "Aa Plc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ANII.L",
+        "name": "Ab New India",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AAIF.L",
+        "name": "Abdn.Asn Inc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ABD.L",
+        "name": "Abdn.Nw.Dwn",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ADIG.L",
+        "name": "Aberdeen Di&G",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ASIT.L",
+        "name": "Aberforth Spli.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ASL.L",
+        "name": "Aberfth.Smll.Co",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AAS.L",
+        "name": "Abstd Asiafocus",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ASEI.L",
+        "name": "Abstd Equityinc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ASLI.L",
+        "name": "Abstd Euro Log.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ADM.L",
+        "name": "Admiral Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AEWU.L",
+        "name": "Aew Uk Reit",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AGK.L",
+        "name": "Aggreko",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AAF.L",
+        "name": "Airtel Africa",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AJB.L",
+        "name": "Aj Bell",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AEFS.L",
+        "name": "Alcentra Gbp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ALFA.L",
+        "name": "Alfa Fin",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ATST.L",
+        "name": "Alliance Trust",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ATT.L",
+        "name": "Allianz Tech",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ALM.L",
+        "name": "Allied Mind",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AMGO.L",
+        "name": "Amigo",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AAL.L",
+        "name": "Anglo American",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AEP.L",
+        "name": "Anglo-Eastern",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ANTO.L",
+        "name": "Antofagasta",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AO.L",
+        "name": "Ao World",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "APAX.L",
+        "name": "Apax Glb",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "APTD.L",
+        "name": "Aptitude",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ARW.L",
+        "name": "Arrow Global",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ATS.L",
+        "name": "Artemis Alpha",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ASAI.L",
+        "name": "Asa Int",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ASCL.L",
+        "name": "Ascential",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ASHM.L",
+        "name": "Ashmore",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AHT.L",
+        "name": "Ashtead Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DGN.L",
+        "name": "Asia Dragon",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AGR.L",
+        "name": "Assura",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AML.L",
+        "name": "Aston Martin",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AZN.L",
+        "name": "Astrazeneca",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AUTO.L",
+        "name": "Auto Trad",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AVST.L",
+        "name": "Avast",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AVV.L",
+        "name": "Aveva Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AGT.L",
+        "name": "Avi Global Tst",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AV..L",
+        "name": "Aviva",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "AVON.L",
+        "name": "Avon Rbr.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BME.L",
+        "name": "B&M European",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BAB.L",
+        "name": "Babcock Intl",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BA.L",
+        "name": "Bae Sys.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BGS.L",
+        "name": "Baill.G.Shin.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BGFD.L",
+        "name": "Baillie G.Jap.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BGEU.L",
+        "name": "Baillie Geu",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BGUK.L",
+        "name": "Baillie Gifford",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "USA.L",
+        "name": "Baillie Gifford",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BAKK.L",
+        "name": "Bakkavor",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BBY.L",
+        "name": "Balfour B.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BGEO.L",
+        "name": "Bank Of Georgia",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BNKR.L",
+        "name": "Bankers Inv.Tst",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BARC.L",
+        "name": "Barclays",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BAG.L",
+        "name": "Barr (A.G.)",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BDEV.L",
+        "name": "Barratt Devel.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BVC.L",
+        "name": "Batm Advanced",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BBH.L",
+        "name": "Bb Healthcare",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BBGI.L",
+        "name": "Bbgi Sicav",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BEZ.L",
+        "name": "Beazley",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BWY.L",
+        "name": "Bellway",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BKG.L",
+        "name": "Berkeley Gp.Hld",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BHGG.L",
+        "name": "Bh Global ?",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BHMG.L",
+        "name": "Bh Macro Gbp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BHP.L",
+        "name": "Bhp Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BIFF.L",
+        "name": "Biffa",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BYG.L",
+        "name": "Big Yellow Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BIOG.L",
+        "name": "Biotech Gwth",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BRNA.L",
+        "name": "Blackrock Brna",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BRFI.L",
+        "name": "Blackrock Fr",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BRGE.L",
+        "name": "Blackrock Great",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BRLA.L",
+        "name": "Blackrock Lat A",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BRSC.L",
+        "name": "Blackrock Sml",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BRWM.L",
+        "name": "Blackrock Wld",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BMY.L",
+        "name": "Bloomsbury Pub.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BSIF.L",
+        "name": "Bluefield Solar",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BCI.L",
+        "name": "Bmo Cap & Inc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BCPT.L",
+        "name": "Bmo Comm Prop.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BGSC.L",
+        "name": "Bmo Global",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BPET.L",
+        "name": "Bmo Priv. Ord",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BREI.L",
+        "name": "Bmo Real Est",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BOY.L",
+        "name": "Bodycote",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BOOT.L",
+        "name": "Boot(H)",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BP.L",
+        "name": "Bp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BATS.L",
+        "name": "Br.Amer.Tob.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BLND.L",
+        "name": "Br.Land",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "THRG.L",
+        "name": "Br.Throg.Trust",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BRW.L",
+        "name": "Brewin Dolphin",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BVIC.L",
+        "name": "Britvic",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BWNG.L",
+        "name": "Brown(N.) Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BUT.L",
+        "name": "Brunner Inv.Tst",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BT.A.L",
+        "name": "Bt Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BNZL.L",
+        "name": "Bunzl",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BRBY.L",
+        "name": "Burberry Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CCR.L",
+        "name": "C&C Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CNE.L",
+        "name": "Cairn Energy",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CLDN.L",
+        "name": "Caledonia Inv.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CAPC.L",
+        "name": "Cap & Count",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CAL.L",
+        "name": "Cap.&Reg.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CPI.L",
+        "name": "Capita Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CGT.L",
+        "name": "Capital Gearing",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CARD.L",
+        "name": "Card Factory",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CCL.L",
+        "name": "Carnival",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CARR.L",
+        "name": "Carrs Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CCJI.L",
+        "name": "Cc Japan",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CEY.L",
+        "name": "Centamin",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CNA.L",
+        "name": "Centrica",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CHG.L",
+        "name": "Chemring Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CSN.L",
+        "name": "Chesnara",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CINE.L",
+        "name": "Cineworld",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CLIG.L",
+        "name": "City Lon Inv",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CTY.L",
+        "name": "City Lon.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CMHY.L",
+        "name": "City Merch.High",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CSH.L",
+        "name": "Civitas Social",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CKN.L",
+        "name": "Clarkson",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CLG.L",
+        "name": "Clipper",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CBG.L",
+        "name": "Close Br.Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CLI.L",
+        "name": "Cls Hdgs",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CMCX.L",
+        "name": "Cmc Mkts",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "COA.L",
+        "name": "Coats Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CCH.L",
+        "name": "Cocacola Hbc Ag",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CPG.L",
+        "name": "Compass Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CCC.L",
+        "name": "Computacenter",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CNCT.L",
+        "name": "Connect Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GLO.L",
+        "name": "Contourglbl",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CTEC.L",
+        "name": "Convatec",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "COST.L",
+        "name": "Costain Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CSP.L",
+        "name": "Countryside",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NCYF.L",
+        "name": "Cqs New C.H.Y.F",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CWK.L",
+        "name": "Cranswick",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CRST.L",
+        "name": "Crest Nicholson",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CRH.L",
+        "name": "Crh",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CRDA.L",
+        "name": "Croda Intl.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CREI.L",
+        "name": "Custodian Reit",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CCPG.L",
+        "name": "Cvc Credit Gbp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DJAN.L",
+        "name": "Daejan Hldgs",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DCC.L",
+        "name": "Dcc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DLAR.L",
+        "name": "De La Rue",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DPH.L",
+        "name": "Dechra Pharm",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DLN.L",
+        "name": "Derwent London",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DVO.L",
+        "name": "Devro",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DFS.L",
+        "name": "Dfs Furn",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DGE.L",
+        "name": "Diageo",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DIA.L",
+        "name": "Dialight",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DTY.L",
+        "name": "Dignity",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DPLM.L",
+        "name": "Diploma",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DLG.L",
+        "name": "Direct Line",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DSCV.L",
+        "name": "Discoverie Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DIVI.L",
+        "name": "Diverse Inc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DC.L",
+        "name": "Dixons Carpho",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DOM.L",
+        "name": "Domino'S Pizza",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DPEU.L",
+        "name": "Dp Eurasia",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DRX.L",
+        "name": "Drax",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DIG.L",
+        "name": "Dunedin Inc.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DNLM.L",
+        "name": "Dunelm",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DWF.L",
+        "name": "Dwf Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "EZJ.L",
+        "name": "Easyjet",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "EGL.L",
+        "name": "Ecofin Global",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "EDIN.L",
+        "name": "Edin.Inv.Tst.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "EWI.L",
+        "name": "Edin.Wwide Inv",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "EPIC.L",
+        "name": "Ediston Prprty",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ELTA.L",
+        "name": "Electra Private",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ECM.L",
+        "name": "Electrocomps.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ELM.L",
+        "name": "Elementis",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ESP.L",
+        "name": "Empiric",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ENOG.L",
+        "name": "Energean Oil",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ENQ.L",
+        "name": "Enquest",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "EPG.L",
+        "name": "Ep Global",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "EQN.L",
+        "name": "Equiniti",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ESNT.L",
+        "name": "Essentra",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JEO.L",
+        "name": "Euro Opps Tr.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ERM.L",
+        "name": "Euromoney Inst.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "EAT.L",
+        "name": "European Assets",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "EVR.L",
+        "name": "Evraz",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "EXPN.L",
+        "name": "Experian",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FCIT.L",
+        "name": "F &C Iv.Tst",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FDM.L",
+        "name": "Fdm Group Hldg",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FERG.L",
+        "name": "Ferguson",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FXPO.L",
+        "name": "Ferrexpo",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FEV.L",
+        "name": "Fid.Euro.Val.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FSV.L",
+        "name": "Fid.Sp.Val.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FAS.L",
+        "name": "Fidelity Asian",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FCSS.L",
+        "name": "Fidelity China",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FJV.L",
+        "name": "Fidelity Japan",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FIN.L",
+        "name": "Finablr",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FGT.L",
+        "name": "Finsbury Gth.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FGP.L",
+        "name": "Firstgroup",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FSJ.L",
+        "name": "Fisher(J)& Sons",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FLTR.L",
+        "name": "Flutter Ent",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FSFL.L",
+        "name": "Foresight Solar",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FORT.L",
+        "name": "Forterra",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FOXT.L",
+        "name": "Foxtons",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FRAS.L",
+        "name": "Frasers Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FRES.L",
+        "name": "Fresnillo",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FSTA.L",
+        "name": "Fuller,Smith'A'",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FCH.L",
+        "name": "Funding Circle",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FEET.L",
+        "name": "Fundsmith Emerg",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FUTR.L",
+        "name": "Future",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GFS.L",
+        "name": "G4S",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GFRD.L",
+        "name": "Galliford Try",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GAW.L",
+        "name": "Games Workshop",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GYS.L",
+        "name": "Gamesys Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GABI.L",
+        "name": "Gcp Asset Bckd",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GCP.L",
+        "name": "Gcp Infra.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "DIGS.L",
+        "name": "Gcp Student Liv",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GEMD.L",
+        "name": "Gem Diamonds Di",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GSS.L",
+        "name": "Genesis E.M.F.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GNS.L",
+        "name": "Genus",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "CGEO.L",
+        "name": "Georgia Capital",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GHG.L",
+        "name": "Georgia H",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GSK.L",
+        "name": "Glaxosmithkline",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GLEN.L",
+        "name": "Glencore",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GOG.L",
+        "name": "Go-Ahead Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GOCO.L",
+        "name": "Goco Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GDWN.L",
+        "name": "Goodwin",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GPOR.L",
+        "name": "Gr.Portland",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GFTU.L",
+        "name": "Grafton Grp.Uts",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GRI.L",
+        "name": "Grainger",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "UKW.L",
+        "name": "Greencoat Uk",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GNC.L",
+        "name": "Greencore Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GRG.L",
+        "name": "Greggs",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GVC.L",
+        "name": "Gvc Hldgs",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GYM.L",
+        "name": "Gym Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HFD.L",
+        "name": "Halfords",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HLMA.L",
+        "name": "Halma",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HMSO.L",
+        "name": "Hammerson",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HVPE.L",
+        "name": "Harbourvest",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HL.L",
+        "name": "Hargreaves Lans",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HWG.L",
+        "name": "Harworth Gp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HSTG.L",
+        "name": "Hastings Gp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HAS.L",
+        "name": "Hays",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HEAD.L",
+        "name": "Headlam Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HLCL.L",
+        "name": "Helical Plc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HTWS.L",
+        "name": "Helios Towers",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HEFT.L",
+        "name": "Hend.Eur.Focus",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HNE.L",
+        "name": "Hend.Euro.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HFEL.L",
+        "name": "Hend.Far East",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HHI.L",
+        "name": "Hend.High Inc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HSL.L",
+        "name": "Hend.Small Cos.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HAST.L",
+        "name": "Henderson Alt",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HDIV.L",
+        "name": "Henderson Div",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HINT.L",
+        "name": "Henderson Int.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HRI.L",
+        "name": "Herald Inv.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HGT.L",
+        "name": "Hg Capital",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HICL.L",
+        "name": "Hicl Infrastru.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HTCF.L",
+        "name": "Highbridge Gbp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HIK.L",
+        "name": "Hikma",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HILS.L",
+        "name": "Hill & Smith",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HFG.L",
+        "name": "Hilton Food",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SONG.L",
+        "name": "Hipgnosis Song.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HSX.L",
+        "name": "Hiscox",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HOC.L",
+        "name": "Hochschild",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BOWL.L",
+        "name": "Hollywood Bwl",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HSV.L",
+        "name": "Homeserve",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HSW.L",
+        "name": "Hostelworld",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HWDN.L",
+        "name": "Howden Joinery",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HSBA.L",
+        "name": "Hsbc Hldgs.Uk",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HTG.L",
+        "name": "Hunting",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HNT.L",
+        "name": "Huntsworth",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "HYVE.L",
+        "name": "Hyve Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IBST.L",
+        "name": "Ibstock",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ICGT.L",
+        "name": "Icg Ent Trst",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LBOW.L",
+        "name": "Icg-Longbow",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IGG.L",
+        "name": "Ig Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IMI.L",
+        "name": "Imi",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IMB.L",
+        "name": "Imp.Brands",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IHR.L",
+        "name": "Impact Health",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IEM.L",
+        "name": "Impax Env.Mkt",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "INCH.L",
+        "name": "Inchcape",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IIT.L",
+        "name": "Ind.Inv.Tst",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "INDV.L",
+        "name": "Indivior",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "INF.L",
+        "name": "Informa",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IBT.L",
+        "name": "Int.Biotech.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ICP.L",
+        "name": "Int.Cap.Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IPF.L",
+        "name": "Inter. Pers.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IHG.L",
+        "name": "Intercon. Hotel",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ITRK.L",
+        "name": "Intertek Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IHP.L",
+        "name": "Intgrafin Hldg",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IAG.L",
+        "name": "Intl Consol Air",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "INPP.L",
+        "name": "Intl Public",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "INTU.L",
+        "name": "Intu Properties",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IAT.L",
+        "name": "Invesco Asia",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IVI.L",
+        "name": "Invesco Inc Gth",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IPU.L",
+        "name": "Invesco Perp Uk",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "INVP.L",
+        "name": "Investec",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IPO.L",
+        "name": "Ip Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ITV.L",
+        "name": "Itv",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "IWG.L",
+        "name": "Iwg",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JD.L",
+        "name": "Jd Sports",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JLEN.L",
+        "name": "Jlen Env",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JLG.L",
+        "name": "John Laing G",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JMAT.L",
+        "name": "Johnson Matthey",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JAGI.L",
+        "name": "Jp Morg.As",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JCGI.L",
+        "name": "Jp Morg.Chin",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JII.L",
+        "name": "Jpmor Indian",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JPS.L",
+        "name": "Jpmor. Jap.Sml",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JAM.L",
+        "name": "Jpmor.Amer.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JESC.L",
+        "name": "Jpmorg.Eur",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JGGI.L",
+        "name": "Jpmorg.Gbl.G&I",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JMI.L",
+        "name": "Jpmorg.Smaller",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JUSC.L",
+        "name": "Jpmorg.Us",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JCH.L",
+        "name": "Jpmorgan Clav",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JMG.L",
+        "name": "Jpmorgan Emerg",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JETG.L",
+        "name": "Jpmorgan G",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JEMI.L",
+        "name": "Jpmorgan Glob",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JETI.L",
+        "name": "Jpmorgan I",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JFJ.L",
+        "name": "Jpmorgan Japan.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JMF.L",
+        "name": "Jpmorgan Mid",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JRS.L",
+        "name": "Jpmorgan Rus",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JTC.L",
+        "name": "Jtc Plc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JUP.L",
+        "name": "Jupiter Fnd",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JUS.L",
+        "name": "Jupiter Us Sml",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JET.L",
+        "name": "Just Eat Takeaw",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JUST.L",
+        "name": "Just Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "KNOS.L",
+        "name": "Kainos Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "KAZ.L",
+        "name": "Kaz Minerals",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "KLR.L",
+        "name": "Keller Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "KMR.L",
+        "name": "Kenmare Res.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "KIT.L",
+        "name": "Keystone It",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "KIE.L",
+        "name": "Kier Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "KCT.L",
+        "name": "Kin & Carta",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "KGF.L",
+        "name": "Kingfisher",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LAM.L",
+        "name": "Lamprell",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LRE.L",
+        "name": "Lancashire",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LAND.L",
+        "name": "Land Secs.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LWDB.L",
+        "name": "Law.Deb.Corp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LGEN.L",
+        "name": "Legal&Gen.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LTI.L",
+        "name": "Lindsell Train",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LIO.L",
+        "name": "Liontrust A.M.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LLOY.L",
+        "name": "Lloyds Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LSE.L",
+        "name": "Lon.Stk.Exch",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LMP.L",
+        "name": "Londonmetric",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LOOK.L",
+        "name": "Lookers",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LWI.L",
+        "name": "Lowland Inv.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LSL.L",
+        "name": "Lsl Prop",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LUCE.L",
+        "name": "Luceco",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "LXI.L",
+        "name": "Lxi Reit",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MNG.L",
+        "name": "M&G Plc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MPO.L",
+        "name": "Macau Property",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MACF.L",
+        "name": "Macfarlane Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MAJE.L",
+        "name": "Majedie Inv.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "EMG.L",
+        "name": "Man Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MNL.L",
+        "name": "Manchester&Lon.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MKS.L",
+        "name": "Marks & Sp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MSLH.L",
+        "name": "Marshalls",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MARS.L",
+        "name": "Marston'S",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MNP.L",
+        "name": "Martin C.Glbl",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MCB.L",
+        "name": "Mcbride",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MCS.L",
+        "name": "Mccarthy",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MCKS.L",
+        "name": "Mckay Secs.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MER.L",
+        "name": "Mears Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MGP.L",
+        "name": "Medica Group P.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MDC.L",
+        "name": "Mediclinic",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MGGT.L",
+        "name": "Meggitt",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MRO.L",
+        "name": "Melrose Ind",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MNZS.L",
+        "name": "Menzies(J)",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MRC.L",
+        "name": "Mercantile Inv.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MRCH.L",
+        "name": "Merchants Tst",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MERI.L",
+        "name": "Merian Chrys.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MTRO.L",
+        "name": "Metro Bk",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MCRO.L",
+        "name": "Micro Focus",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MWY.L",
+        "name": "Mid Wynd Int.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MCT.L",
+        "name": "Middlefield Prf",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MAB.L",
+        "name": "Mitchells & But",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MTO.L",
+        "name": "Mitie Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "GLE.L",
+        "name": "Mj Gleeson",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MNDI.L",
+        "name": "Mondi",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MONY.L",
+        "name": "Moneysup.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MNKS.L",
+        "name": "Monks Inv.Tst.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MTE.L",
+        "name": "Montanaro",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MTU.L",
+        "name": "Montanaro Uk",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MGAM.L",
+        "name": "Morgan Advanced",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MGNS.L",
+        "name": "Morgn Sindl Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MRW.L",
+        "name": "Morrison (Wm)",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MOTR.L",
+        "name": "Motorpoint",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MUT.L",
+        "name": "Murray Inc.Tst.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "MYI.L",
+        "name": "Murray Intl.Tst",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NEX.L",
+        "name": "Nat.Express",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NG.L",
+        "name": "National Grid",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NBLS.L",
+        "name": "Nb Global ?",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NBPE.L",
+        "name": "Nb Priv. Eqty",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NCC.L",
+        "name": "Ncc Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NETW.L",
+        "name": "Network Intl",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NRR.L",
+        "name": "Newriver Reit",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NXT.L",
+        "name": "Next",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NESF.L",
+        "name": "Nextenergy Sol.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "N91.L",
+        "name": "Ninety One Plc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NMC.L",
+        "name": "Nmc Health",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NXR.L",
+        "name": "Norcros",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NAIT.L",
+        "name": "North American",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "NAS.L",
+        "name": "North Atl.Smlr",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "OCDO.L",
+        "name": "Ocado",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ORIT.L",
+        "name": "Octopus Renew.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "OTB.L",
+        "name": "On The Beach",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "OSB.L",
+        "name": "Onesavings",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "OXB.L",
+        "name": "Oxford Biomed.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "OXIG.L",
+        "name": "Oxford Instrmnt",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PAC.L",
+        "name": "Pacific Assets",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PHI.L",
+        "name": "Pacific Horizon",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PAGE.L",
+        "name": "Pagegroup",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PCA.L",
+        "name": "Palace Capital",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PIN.L",
+        "name": "Pantheon Int.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PAG.L",
+        "name": "Paragon Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PAY.L",
+        "name": "Paypoint",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PSON.L",
+        "name": "Pearson",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PDG.L",
+        "name": "Pendragon",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PNN.L",
+        "name": "Pennon Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PLI.L",
+        "name": "Perptl.I&G.Inv.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PSH.L",
+        "name": "Pershing Square",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PSN.L",
+        "name": "Persimmon",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PNL.L",
+        "name": "Personal Assets",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PFC.L",
+        "name": "Petrofac",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "POG.L",
+        "name": "Petropavlovsk",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PETS.L",
+        "name": "Pets At Home",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PHAR.L",
+        "name": "Pharos Energy",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PHNX.L",
+        "name": "Phoenix Grp Hdg",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PSDL.L",
+        "name": "Phoenix Spree D",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PHTM.L",
+        "name": "Photo-Me Intl.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PCTN.L",
+        "name": "Picton Prop",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PTEC.L",
+        "name": "Playtech",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PLUS.L",
+        "name": "Plus500",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PCFT.L",
+        "name": "Polar Cap Gbl",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PCGH.L",
+        "name": "Polar Cap Glbl",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PCT.L",
+        "name": "Polar Cap.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PSSL.L",
+        "name": "Poll Street Sec",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "POLY.L",
+        "name": "Polymetal Int",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PLP.L",
+        "name": "Polypipe Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PRV.L",
+        "name": "Porvair",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PPH.L",
+        "name": "Pphe Hotel",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PFD.L",
+        "name": "Prem Foods",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PMO.L",
+        "name": "Premier Oil",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PHP.L",
+        "name": "Primary Health",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PFG.L",
+        "name": "Provident Fin.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PRU.L",
+        "name": "Prudential",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PRTC.L",
+        "name": "Puretech",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "PZC.L",
+        "name": "Pz Cussons",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "QQ.L",
+        "name": "Qinetiq",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "QLT.L",
+        "name": "Quilter Plc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RNK.L",
+        "name": "Rank Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RAT.L",
+        "name": "Rathbone Bros",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RAV.L",
+        "name": "Raven Prop",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RDI.L",
+        "name": "Rdi Reit",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RDSA.L",
+        "name": "Rds 'A'",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RDSB.L",
+        "name": "Rds 'B'",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RCH.L",
+        "name": "Reach Plc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RECI.L",
+        "name": "Real Est.Cred",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RB.L",
+        "name": "Reckitt Ben. Gp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "REDD.L",
+        "name": "Redde Northgate",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RDW.L",
+        "name": "Redrow",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RGL.L",
+        "name": "Regional Reit",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "REL.L",
+        "name": "Relx",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TRIG.L",
+        "name": "Renewables",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RWI.L",
+        "name": "Renewi Plc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RSW.L",
+        "name": "Renishaw",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RTO.L",
+        "name": "Rentokil Initl.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RESI.L",
+        "name": "Residential Sec",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RTN.L",
+        "name": "Restaurant Gp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RHIM.L",
+        "name": "Rhi Magnesita",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RCDO.L",
+        "name": "Ricardo",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RMV.L",
+        "name": "Rightmove",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RIO.L",
+        "name": "Rio Tinto",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RCP.L",
+        "name": "Rit Capital",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RIV.L",
+        "name": "River Mer",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RSE.L",
+        "name": "Riverstone",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RWA.L",
+        "name": "Robert Walt.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RR.L",
+        "name": "Rolls-Royce Hlg",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ROR.L",
+        "name": "Rotork",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RBS.L",
+        "name": "Royal Bank Scot",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RMG.L",
+        "name": "Royal Mail",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RPS.L",
+        "name": "Rps Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RSA.L",
+        "name": "Rsa Ins.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "RICA.L",
+        "name": "Ruffer Inv. Co.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SUS.L",
+        "name": "S & U",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SBRE.L",
+        "name": "Sabre Insur",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SAFE.L",
+        "name": "Safestore",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SAGA.L",
+        "name": "Saga",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SGE.L",
+        "name": "Sage Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SBRY.L",
+        "name": "Sainsbury(J)",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SNN.L",
+        "name": "Sanne Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SVS.L",
+        "name": "Savills",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SDP.L",
+        "name": "Schroder Asia",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ATR.L",
+        "name": "Schroder Asian",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SERE.L",
+        "name": "Schroder Eur.R",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SCF.L",
+        "name": "Schroder Inc.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SJG.L",
+        "name": "Schroder Japan",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SOI.L",
+        "name": "Schroder Orient",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SREI.L",
+        "name": "Schroder Real",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SCP.L",
+        "name": "Schroder Uk M&S",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SUPP.L",
+        "name": "Schroder Uk Pub",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SDR.L",
+        "name": "Schroders",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SAIN.L",
+        "name": "Scot.Amer.Inv.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SCIN.L",
+        "name": "Scot.Inv.Tst.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SST.L",
+        "name": "Scot.Orntl.Smll",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SMT.L",
+        "name": "Scottish Mort",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SEIT.L",
+        "name": "Sdcl Energy Ef.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SDL.L",
+        "name": "Sdl",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "STS.L",
+        "name": "Secs.Scotland",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SGRO.L",
+        "name": "Segro",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SNR.L",
+        "name": "Senior",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SEQI.L",
+        "name": "Sequoia Eco",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SRP.L",
+        "name": "Serco Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SFR.L",
+        "name": "Severfield",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SVT.L",
+        "name": "Severn Trent",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SHB.L",
+        "name": "Shaftesbury",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SHI.L",
+        "name": "Sig",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SIG.L",
+        "name": "Signature Aviat",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SRE.L",
+        "name": "Sirius R E.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SCRF.L",
+        "name": "Sme Credit Real",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SN.L",
+        "name": "Smith&Nephew",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SMDS.L",
+        "name": "Smith(Ds)",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SMIN.L",
+        "name": "Smiths Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SSON.L",
+        "name": "Smithson Invest",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SKG.L",
+        "name": "Smurfit Kap.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SCT.L",
+        "name": "Softcat",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SXS.L",
+        "name": "Spectris",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SDY.L",
+        "name": "Speedy Hire",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SPX.L",
+        "name": "Spirax-Sarco",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SPI.L",
+        "name": "Spire Health",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SPT.L",
+        "name": "Spirent",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SQN.L",
+        "name": "Sqn Asset Fin",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SQNX.L",
+        "name": "Sqn Asset Fin C",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SSE.L",
+        "name": "Sse",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SSPG.L",
+        "name": "Ssp Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "STJ.L",
+        "name": "St.James'S Plac",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SMP.L",
+        "name": "St.Modwen Prop.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SGC.L",
+        "name": "Stagecoach",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SLS.L",
+        "name": "Stand Life Uk",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "STAN.L",
+        "name": "Stand.Chart.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SWEF.L",
+        "name": "Starwood Eur",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SLI.L",
+        "name": "Std Lfe In Pty",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SLA.L",
+        "name": "Std Life Aber",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SLPE.L",
+        "name": "Std Life Priv.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "STEM.L",
+        "name": "Sthree",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "STOB.L",
+        "name": "Stobart",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "STCK.L",
+        "name": "Stock Spirit",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SEC.L",
+        "name": "Strategic Eqty",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "STU.L",
+        "name": "Studio Ret",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "STVG.L",
+        "name": "Stvg",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SDRY.L",
+        "name": "Superdry",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SYNC.L",
+        "name": "Syncona",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SYNT.L",
+        "name": "Synthomer",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TALK.L",
+        "name": "Talktalk",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "THRL.L",
+        "name": "Target Healthc.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TATE.L",
+        "name": "Tate & Lyle",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TW.L",
+        "name": "Taylor Wimpey",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TBCG.L",
+        "name": "Tbc Bank Gp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TED.L",
+        "name": "Ted Baker",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TEP.L",
+        "name": "Telecom Plus",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TMPL.L",
+        "name": "Temple Bar",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TEM.L",
+        "name": "Templeton Emrg.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TEG.L",
+        "name": "Ten Ent Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TSCO.L",
+        "name": "Tesco",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "VTC.L",
+        "name": "The Vitec Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TIFS.L",
+        "name": "Ti Fluid",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TPT.L",
+        "name": "Topps Tiles",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TOWN.L",
+        "name": "Town Centre",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TCAP.L",
+        "name": "Tp Icap",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TRG.L",
+        "name": "Tr Euro.Growth",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TRY.L",
+        "name": "Tr Prop.Inv.Tst",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TRN.L",
+        "name": "Trainline",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TPK.L",
+        "name": "Travis Perkins",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TET.L",
+        "name": "Treatt",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TRI.L",
+        "name": "Trifast",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SOHO.L",
+        "name": "Triple Pnt Soc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "BBOX.L",
+        "name": "Tritax Big Box",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "EBOX.L",
+        "name": "Tritax Euro. ?",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TIGT.L",
+        "name": "Troy Income",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TTG.L",
+        "name": "Tt Electronics",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TUI.L",
+        "name": "Tui Ag",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TLW.L",
+        "name": "Tullow Oil",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TFIF.L",
+        "name": "Twentyfour Inc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SMIF.L",
+        "name": "Twentyfour Sel",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "TYMN.L",
+        "name": "Tyman",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "UAI.L",
+        "name": "U And I Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "UDG.L",
+        "name": "Udg Healthcare",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "UKCM.L",
+        "name": "Uk Comm Prop",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ULE.L",
+        "name": "Ultra Elec.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ULVR.L",
+        "name": "Unilever",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "UTG.L",
+        "name": "Unite Group",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "UANC.L",
+        "name": "Urban&Civic",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "UU..L",
+        "name": "Utd. Utilities",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "UEM.L",
+        "name": "Utilico Em.Mkts",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "VIN.L",
+        "name": "Value And Inc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "VEC.L",
+        "name": "Vectura",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "VSVS.L",
+        "name": "Vesuvius",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "VCT.L",
+        "name": "Victrex",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "VEIL.L",
+        "name": "Vietnam Ent",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "VOF.L",
+        "name": "Vinacap Viet Op",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "VMUK.L",
+        "name": "Virgin Money Uk",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "VTY.L",
+        "name": "Vistry Grp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "VVO.L",
+        "name": "Vivo Energy",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "VOD.L",
+        "name": "Vodafone Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "FAN.L",
+        "name": "Volution",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "VP.L",
+        "name": "Vp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "VSL.L",
+        "name": "Vpc Specialty",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "WOSG.L",
+        "name": "Watches Switz",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "WEIR.L",
+        "name": "Weir Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "JDW.L",
+        "name": "Wetherspoon(Jd)",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "SMWH.L",
+        "name": "Wh Smith",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "WTB.L",
+        "name": "Whitbread",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "WMH.L",
+        "name": "William Hill",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "WIN.L",
+        "name": "Wincanton",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "WTAN.L",
+        "name": "Witan Inv Tst",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "WPC.L",
+        "name": "Witan Pac",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "WIZZ.L",
+        "name": "Wizz Air",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "WG.L",
+        "name": "Wood Grp(J)",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "WKP.L",
+        "name": "Workspace Grp.",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "WWH.L",
+        "name": "Worldwide Hc",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "WPP.L",
+        "name": "Wpp",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "XPP.L",
+        "name": "Xp Power",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "XPS.L",
+        "name": "Xps Pensions",
+        "sector": "UK Equity"
+    },
+    {
+        "symbol": "ZTF.L",
+        "name": "Zotefoams",
+        "sector": "UK Equity"
+    }
+]

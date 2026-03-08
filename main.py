@@ -3,8 +3,11 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from database import init_db
-from routers import users, admin, prediction, trades
+from routers import users, admin, prediction, trades, backtest, terminal, quotes, news, flights
+from websocket_manager import ws_manager
+from services.news_service import news_service as _news_svc
 from contextlib import asynccontextmanager
+import asyncio
 import os
 from dotenv import load_dotenv
 
@@ -16,10 +19,18 @@ async def lifespan(app: FastAPI):
         # Initialize Beanie and MongoDB
         await init_db()
         print("MongoDB Connected Successfully!")
+        # Start WebSocket Manager
+        await ws_manager.start()
+        print("WebSocket Manager Started!")
+        # Pre-warm news cache in background so first request is instant
+        asyncio.create_task(_news_svc.get_feed())
+        print("News cache warming started...")
     except Exception as e:
         print(f"Startup Error: {str(e)}")
     yield
-    # Shutdown logic if needed
+    # Shutdown logic
+    await ws_manager.stop()
+    print("WebSocket Manager Stopped.")
 
 app = FastAPI(
     title="Stock Market Dashboard API",
@@ -72,8 +83,13 @@ async def log_origin(request: Request, call_next):
 # Include Routers
 app.include_router(users.router)
 app.include_router(admin.router)
-app.include_router(prediction.router)
+app.include_router(prediction.router) # Now /api/v1/predict
 app.include_router(trades.router)
+app.include_router(backtest.router) # Now /api/v1/backtest
+app.include_router(terminal.router)
+app.include_router(quotes.router)
+app.include_router(news.router)
+app.include_router(flights.router)
 
 @app.get("/")
 def read_root():

@@ -58,3 +58,8 @@ MOMENTUM_PROXIMITY = float(os.getenv("MOMENTUM_PROXIMITY", 0.995))
 # --- Options Simulation ---
 OPTION_PREMIUM_DEFAULT = float(os.getenv("OPTION_PREMIUM_DEFAULT", 100))
 OPTION_SCAN_RANGE = float(os.getenv("OPTION_SCAN_RANGE", 0.10)) # 10% each side
+
+# --- Redis Configuration ---
+REDIS_URL = os.getenv("REDIS_URL", "redis://localhost:6379/0")
+CACHE_TTL_PRICE = int(os.getenv("CACHE_TTL_PRICE", 300))  # 5 minutes
+CACHE_TTL_FEATURES = int(os.getenv("CACHE_TTL_FEATURES", 900))  # 15 minutes

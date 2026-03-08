@@ -12,7 +12,7 @@ from typing import List, Dict
 from datetime import datetime, timedelta, timezone
 from trading_manager import TradingManager
 
-router = APIRouter(prefix="/predict", tags=["prediction"])
+router = APIRouter(prefix="/api/v1/predict", tags=["prediction"])
 trading_mgr = TradingManager()
 
 logger = logging.getLogger(__name__)
@@ -73,7 +73,9 @@ async def get_prediction(
         try:
             analyzer = MarketAnalyzer(symbol)
             await analyzer.fetch_data(period=period, interval=interval)
-            result = analyzer.predict_direction()
+            
+            # Use to_thread for CPU-bound indicator and prediction logic
+            result = await asyncio.to_thread(analyzer.predict_direction)
             
             # --- DEDUPLICATION LOGIC ---
             # Use configured deduplication window

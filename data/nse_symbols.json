@@ -40,11 +40,6 @@
         "sector": "Equity"
     },
     {
-        "symbol": "A2ZINFRA",
-        "name": "A2Z Infra Engineering Limited",
-        "sector": "Equity"
-    },
-    {
         "symbol": "AAATECH",
         "name": "Aaa Technologies Limited",
         "sector": "Equity"
@@ -327,11 +322,6 @@
     {
         "symbol": "AFFORDABLE",
         "name": "Affordable Robotic & Automation Limited",
-        "sector": "Equity"
-    },
-    {
-        "symbol": "AFIL",
-        "name": "Akme Fintrade (India) Limited",
         "sector": "Equity"
     },
     {
@@ -1727,11 +1717,6 @@
     {
         "symbol": "CAPLIPOINT",
         "name": "Caplin Point Laboratories Limited",
-        "sector": "Equity"
-    },
-    {
-        "symbol": "CAPTRUST",
-        "name": "Capital Trust Limited",
         "sector": "Equity"
     },
     {
@@ -4220,6 +4205,11 @@
         "sector": "Equity"
     },
     {
+        "symbol": "INA",
+        "name": "Insolation Energy Limited",
+        "sector": "Equity"
+    },
+    {
         "symbol": "INCREDIBLE",
         "name": "Incredible Industries Limited",
         "sector": "Equity"
@@ -5687,11 +5677,6 @@
     {
         "symbol": "MANCREDIT",
         "name": "Mangal Credit And Fincorp Limited",
-        "sector": "Equity"
-    },
-    {
-        "symbol": "MANGALAM",
-        "name": "Mangalam Drugs And Organics Limited",
         "sector": "Equity"
     },
     {
@@ -9280,11 +9265,6 @@
         "sector": "Equity"
     },
     {
-        "symbol": "TARMAT",
-        "name": "Tarmat Limited",
-        "sector": "Equity"
-    },
-    {
         "symbol": "TARSONS",
         "name": "Tarsons Products Limited",
         "sector": "Equity"
@@ -9675,11 +9655,6 @@
         "sector": "Equity"
     },
     {
-        "symbol": "TREEHOUSE",
-        "name": "Tree House Education & Accessories Limited",
-        "sector": "Equity"
-    },
-    {
         "symbol": "TREL",
         "name": "Transindia Real Estate Limited",
         "sector": "Equity"
@@ -9937,11 +9912,6 @@
     {
         "symbol": "USHAMART",
         "name": "Usha Martin Limited",
-        "sector": "Equity"
-    },
-    {
-        "symbol": "USK",
-        "name": "Udayshivakumar Infra Limited",
         "sector": "Equity"
     },
     {

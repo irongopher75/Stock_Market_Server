@@ -41,3 +41,26 @@ class Trade(Document):
 
     class Settings:
         name = "trades"
+
+class BacktestRun(Document):
+    symbol: str
+    user_id: str
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    period: str
+    interval: str
+    metrics: dict
+    equity_curve: list
+    config: dict
+
+    class Settings:
+        name = "backtest_runs"
+
+class RegimeLog(Document):
+    symbol: str
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    regime: str
+    score: float
+    volatility: float
+
+    class Settings:
+        name = "regime_logs"

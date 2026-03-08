@@ -16,3 +16,6 @@ pydantic[email]
 dnspython
 certifi
 pymongo
+redis
+aiohttp
+websockets

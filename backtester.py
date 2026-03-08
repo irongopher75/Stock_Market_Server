@@ -2,128 +2,106 @@ import pandas as pd
 import numpy as np
 import config
 from ml_engine import MarketAnalyzer
+from regime_detector import RegimeDetector, MarketRegime
+import logging
 
-class Backtester:
+logger = logging.getLogger(__name__)
+
+class VectorizedBacktester:
     """
-    A foundational backtesting framework to validate ML Engine strategies
-    using historically unseen data (Out-Of-Sample validation).
+    Advanced Backtesting Engine with vectorized performance metrics.
+    Decoupled from live prediction streams.
     """
-    def __init__(self, symbol, initial_capital=100000.0, period="1y", interval="1d"):
+    def __init__(self, symbol, initial_capital=100000.0, commission=0.0, slippage=0.0001):
         self.symbol = symbol
         self.initial_capital = initial_capital
-        self.period = period
-        self.interval = interval
+        self.commission = commission
+        self.slippage = slippage
         self.analyzer = MarketAnalyzer(symbol)
-        
-    def run_backtest(self):
-        # Fetch data and compute all indicators for the full period
-        self.analyzer.fetch_data(period=self.period, interval=self.interval)
+        self.regime_detector = RegimeDetector()
+
+    async def run(self, period="1y", interval="1d"):
+        """Main execution loop for backtesting."""
+        # 1. Fetch historical bulk data (Separated from live via analyzer)
+        await self.analyzer.fetch_data(period=period, interval=interval)
         self.analyzer.calculate_indicators()
         
-        df = self.analyzer.data.copy()
+        # 2. Generate signals for the entire history (Vectorized)
+        df = self.analyzer.generate_vectorized_signals()
         
-        # We need a rolling average volume & high for Momentum logic
-        df['Avg_Volume'] = df['Volume'].rolling(window=config.MOMENTUM_LOOKBACK).mean()
-        df['Recent_High'] = df['High'].rolling(window=config.MOMENTUM_LOOKBACK).max()
+        # 3. Apply Regime Detection to weights (Vectorized if possible, or iterative bucketed)
+        # For simplicity, we'll calculate regime daily if interval is intraday
+        # or use a rolling regime for the whole df
+        df['Regime'] = df.apply(lambda x: self.regime_detector.detect_regime(df.loc[:x.name].tail(100)), axis=1)
         
-        # Replicate the ML Engine's composite scoring logic over history
-        signals = []
-        total_scores = []
-        for i in range(len(df)):
-            if i < config.SMA_SLOW: # Not enough data for 200 SMA
-                signals.append(0) 
-                total_scores.append(0.0)
-                continue
-                
-            row = df.iloc[i]
-            prev_row = df.iloc[i-1]
+        # Apply weighting logic based on regime
+        def calc_composite_score(row):
+            weights = self.regime_detector.get_strategy_weights(row['Regime'])
+            return (
+                (row['Scalp_Signal'] * weights['scalping']) +
+                (row['Momentum_Signal'] * weights['momentum']) +
+                (row['MR_Signal'] * weights['mean_reversion'])
+            )
             
-            score = 0
-            scalp_score = 0
-            
-            # Scalping component
-            if row['RSI'] < 30: scalp_score += 2
-            elif row['RSI'] > 70: scalp_score -= 2
-            
-            if row['MACD'] > row['Signal_Line'] and prev_row['MACD'] <= prev_row['Signal_Line']: scalp_score += 2
-            elif row['MACD'] < row['Signal_Line'] and prev_row['MACD'] >= prev_row['Signal_Line']: scalp_score -= 2
-            
-            if row['Volume'] > row['Avg_Volume'] * config.VOL_确认_RATIO:
-                scalp_score *= 1.5
-                
-            # Momentum component
-            if row['Close'] > row['Recent_High'] * config.MOMENTUM_PROXIMITY:
-                if row['Volume'] > row['Avg_Volume'] * 1.3:
-                    score += 2
-                    
-            # Mean Reversion component
-            if row['Close'] < row['BB_Lower'] and row['RSI'] < 35:
-                score += 2
-            elif row['Close'] > row['BB_Upper'] and row['RSI'] > 65:
-                score -= 2
-                
-            total_score = score + (scalp_score * 0.5)
-            total_scores.append(total_score)
-            
-            # Generate actionable signal
-            if total_score >= config.BULLISH_SCORE_THRESHOLD:
-                signals.append(1) # Long
-            elif total_score <= config.BEARISH_SCORE_THRESHOLD:
-                signals.append(-1) # Short
-            else:
-                signals.append(0) # Neutral
-                
-        df['Signal'] = signals
-        df['Composite_Score'] = total_scores
+        df['Composite_Score'] = df.apply(calc_composite_score, axis=1)
         
-        # Shift signal by 1 so we trade on the NEXT candle to avoid look-ahead bias
+        # 4. Generate Position (Shifted to avoid lookahead bias)
+        df['Signal'] = 0
+        df.loc[df['Composite_Score'] >= 1.0, 'Signal'] = 1
+        df.loc[df['Composite_Score'] <= -1.0, 'Signal'] = -1
+        
         df['Position'] = df['Signal'].shift(1).fillna(0)
         
-        # Calculate Returns (close-to-close)
+        # 5. Returns Calculation (Vectorized)
         df['Market_Return'] = df['Close'].pct_change()
+        # Apply slippage and commission to entries/exits
+        df['Execution_Cost'] = (df['Position'].diff().abs() * (self.slippage + self.commission))
         
-        # Strategy Return = Position * Market Return
-        df['Strategy_Return'] = df['Position'] * df['Market_Return']
+        df['Strategy_Return'] = (df['Position'] * df['Market_Return']) - df['Execution_Cost']
+        df['Equity_Curve'] = self.initial_capital * (1 + df['Strategy_Return']).cumprod()
         
-        # Equity Curve
-        df['Equity'] = self.initial_capital * (1 + df['Strategy_Return']).cumprod()
+        return self._calculate_metrics(df)
+
+    def _calculate_metrics(self, df: pd.DataFrame) -> dict:
+        """Computes institutional-grade trading metrics."""
+        returns = df['Strategy_Return'].dropna()
         
-        # Metrics calculation
-        total_return = (df['Equity'].iloc[-1] / self.initial_capital) - 1
+        total_return = (df['Equity_Curve'].iloc[-1] / self.initial_capital) - 1
         
-        rolling_max = df['Equity'].cummax()
-        drawdown = df['Equity'] / rolling_max - 1
-        max_drawdown = drawdown.min()
+        # Annualized volatility (assuming 252 trading days)
+        # Adjust scale based on interval (simplified to daily for now)
+        vol = returns.std() * np.sqrt(252)
         
-        winning_trades = len(df[df['Strategy_Return'] > 0])
-        total_active_intervals = len(df[df['Strategy_Return'] != 0])
-        win_rate = winning_trades / total_active_intervals if total_active_intervals > 0 else 0
+        # Sharpe Ratio
+        risk_free_rate = 0.02 # Assume 2%
+        sharpe = (returns.mean() * 252 - risk_free_rate) / vol if vol > 0 else 0
         
-        # Diagnostics
-        valid_scores = df['Composite_Score'][config.SMA_SLOW:]
+        # Sortino Ratio (downside risk only)
+        downside_returns = returns[returns < 0]
+        downside_std = downside_returns.std() * np.sqrt(252)
+        sortino = (returns.mean() * 252 - risk_free_rate) / downside_std if downside_std > 0 else 0
+        
+        # Max Drawdown
+        rolling_max = df['Equity_Curve'].cummax()
+        drawdown = df['Equity_Curve'] / rolling_max - 1
+        max_dd = drawdown.min()
+        
+        # Profit Factor
+        gross_profit = returns[returns > 0].sum()
+        gross_loss = abs(returns[returns < 0].sum())
+        profit_factor = gross_profit / gross_loss if gross_loss > 0 else float('inf')
+        
+        # Win Rate
+        win_rate = len(returns[returns > 0]) / len(returns[returns != 0]) if len(returns[returns != 0]) > 0 else 0
         
         return {
             "symbol": self.symbol,
-            "period": self.period,
-            "initial_capital": self.initial_capital,
-            "final_equity": round(df['Equity'].iloc[-1], 2),
-            "total_return_pct": round(total_return * 100, 2),
-            "max_drawdown_pct": round(max_drawdown * 100, 2),
-            "win_rate_pct": round(win_rate * 100, 2),
-            "total_intervals_in_market": total_active_intervals,
-            "score_diagnostics": valid_scores.describe().to_dict(),
-            "bullish_threshold": config.BULLISH_SCORE_THRESHOLD,
-            "bearish_threshold": config.BEARISH_SCORE_THRESHOLD,
-            "weights": {"Momentum": 2, "Mean Reversion": 2, "Scalping": 0.5 * 2, "Volume/Trend": 1}
+            "total_return": round(total_return * 100, 2),
+            "sharpe_ratio": round(sharpe, 2),
+            "sortino_ratio": round(sortino, 2),
+            "max_drawdown": round(max_dd * 100, 2),
+            "profit_factor": round(profit_factor, 2),
+            "win_rate": round(win_rate * 100, 2),
+            "final_equity": round(df['Equity_Curve'].iloc[-1], 2),
+            "equity_curve": df['Equity_Curve'].tolist()
         }
-
-if __name__ == "__main__":
-    import sys
-    symbol = sys.argv[1] if len(sys.argv) > 1 else "RELIANCE.NS"
-    print(f"Running backtest for {symbol}...")
-    tester = Backtester(symbol, period="1y", interval="1d")
-    results = tester.run_backtest()
-    print("-" * 30)
-    for k, v in results.items():
-        print(f"{k}: {v}")
-    print("-" * 30)
