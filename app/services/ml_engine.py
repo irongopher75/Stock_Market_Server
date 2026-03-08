@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import config
+from app.core import config
 from data_router import DataRouter
 from regime_detector import RegimeDetector, MarketRegime
 import logging

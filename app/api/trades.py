@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
-import models, auth, schemas
+from app.db import models, schemas
+from app.core import auth
 from typing import List
 
 router = APIRouter(prefix="/trades", tags=["trades"])
@@ -59,7 +60,7 @@ async def get_performance_snapshot(
     current_user: models.User = Depends(auth.get_current_active_user)
 ):
     """Calculates realized/unrealized P&L, Total Equity, and Active Exposure."""
-    import config
+    from app.core import config
     import yfinance as yf
     
     # 1. Realized History
@@ -177,7 +178,7 @@ async def get_performance_snapshot(
     
 @router.get("/config")
 async def get_system_config():
-    import config
+    from app.core import config
     return {
         "initial_balance": config.INITIAL_BALANCE,
         "margin_multiplier": 0.2
@@ -223,7 +224,7 @@ async def export_trades_csv(
         headers={"Content-Disposition": f"attachment; filename=trades_export_{datetime.now().strftime('%Y%m%d')}.csv"}
     )
 
-from trading_manager import TradingManager
+from app.services.trading_manager import TradingManager
 trading_mgr = TradingManager()
 
 @router.post("/execute", response_model=models.Trade)

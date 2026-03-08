@@ -37,8 +37,8 @@ class WebSocketManager:
         # Start Upstream Fetchers
         asyncio.create_task(self._finnhub_loop())
         
-        from services.ais_service import AISService
-        from services.opensky_service import OpenSkyService
+        from app.services.ais_service import AISService
+        from app.services.opensky_service import OpenSkyService
         
         self.ais_service = AISService(self)
         self.opensky_service = OpenSkyService(self)

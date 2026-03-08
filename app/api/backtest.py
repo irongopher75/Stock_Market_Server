@@ -1,9 +1,10 @@
 from fastapi import APIRouter, Depends, HTTPException
-import models, auth
-from backtester import VectorizedBacktester
+from app.db import models
+from app.core import auth
+from app.services.backtester import VectorizedBacktester
 from typing import List
 import os
-import config
+from app.core import config
 from datetime import datetime, timezone
 
 router = APIRouter(prefix="/api/v1/backtest", tags=["backtest"])

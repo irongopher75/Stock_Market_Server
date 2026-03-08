@@ -5,9 +5,9 @@ import asyncio
 import pandas as pd
 from typing import Dict, Any, Optional
 import yfinance as yf
-from utils.finnhub_client import FinnhubClient
-from utils.breeze_client import BreezeClient
-import config
+from app.utils.finnhub_client import FinnhubClient
+from app.utils.breeze_client import BreezeClient
+from app.core import config
 
 logger = logging.getLogger(__name__)
 

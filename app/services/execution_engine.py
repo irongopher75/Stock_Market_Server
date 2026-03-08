@@ -1,6 +1,6 @@
 import logging
 import math
-import config
+from app.core import config
 from typing import Dict, Any
 
 logger = logging.getLogger(__name__)

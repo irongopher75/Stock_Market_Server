@@ -1,8 +1,7 @@
 import motor.motor_asyncio
 from beanie import init_beanie
 import os
-import models
-import recovery
+from app.db import models, recovery
 
 MONGODB_URL = os.getenv("MONGODB_URL", "mongodb://localhost:27017/stock_market_db")
 

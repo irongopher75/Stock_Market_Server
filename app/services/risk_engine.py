@@ -1,5 +1,5 @@
 import numpy as np
-import config
+from app.core import config
 
 class RiskEngine:
     def __init__(

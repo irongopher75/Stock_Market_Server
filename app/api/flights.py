@@ -1,5 +1,5 @@
 from fastapi import APIRouter, Query
-from services.aviation_service import get_aviation_service
+from app.services.aviation_service import get_aviation_service
 import logging
 
 router = APIRouter(prefix="/api/v1/flights", tags=["aviation"])

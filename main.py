@@ -2,10 +2,10 @@ from fastapi import FastAPI, Request
 from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
-from database import init_db
-from routers import users, admin, prediction, trades, backtest, terminal, quotes, news, flights
-from websocket_manager import ws_manager
-from services.news_service import news_service as _news_svc
+from app.db.database import init_db
+from app.api import users, admin, prediction, trades, backtest, terminal, quotes, news, flights
+from app.services.websocket_manager import ws_manager
+from app.services.news_service import news_service as _news_svc
 from contextlib import asynccontextmanager
 import asyncio
 import os

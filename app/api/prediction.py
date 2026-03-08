@@ -1,12 +1,13 @@
 from fastapi import APIRouter, Depends, HTTPException
-import models, schemas, auth
-from ml_engine import MarketAnalyzer
-from risk_engine import RiskEngine
+from app.db import models, schemas
+from app.core import auth
+from app.services.ml_engine import MarketAnalyzer
+from app.services.risk_engine import RiskEngine
 import logging
 import re
 import json
 import os
-import config
+from app.core import config
 import asyncio
 from typing import List, Dict
 from datetime import datetime, timedelta, timezone
@@ -117,7 +118,7 @@ async def get_prediction(
             result['payoff_graph'] = payoff_data
             
             # --- HFT Algo 5.1/5.2: Risk Management Integration ---
-            from constants import OrderSide
+            from app.core.constants import OrderSide
             risk_engine = RiskEngine(account_balance=config.INITIAL_BALANCE)
             atr = analyzer.data['ATR'].iloc[-1]
             

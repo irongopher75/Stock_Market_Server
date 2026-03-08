@@ -1,6 +1,6 @@
 import pandas as pd
 import numpy as np
-import config
+from app.core import config
 from ml_engine import MarketAnalyzer
 from regime_detector import RegimeDetector, MarketRegime
 import logging

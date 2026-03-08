@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException
-import models, schemas, auth
+from app.db import models, schemas
+from app.core import auth
 from typing import List
 
 router = APIRouter(prefix="/admin", tags=["admin"])
