@@ -28,6 +28,10 @@ class WebSocketManager:
         # Lazy import to avoid circular dependency
         self.ais_service = None
         self.opensky_service = None
+        
+        # v3.0 Diff States
+        self.last_vessel_state: Dict[str, Dict] = {} # mmsi -> data
+        self.last_aircraft_state: Dict[str, Dict] = {} # callsign -> data
 
     async def start(self):
         if self._is_running:
@@ -86,23 +90,63 @@ class WebSocketManager:
 
     # --- Upstream Normalization & Broadcasting ---
     
-    async def broadcast_vessel_data(self, data: dict):
-        """Normalize and broadcast AIS data."""
-        message = {
-            "type": "VESSEL",
-            "data": data,
-            "timestamp": asyncio.get_event_loop().time()
-        }
-        await self.broadcast_to_clients(message)
 
-    async def broadcast_aircraft_data(self, data: dict):
-        """Normalize and broadcast OpenSky data."""
-        message = {
-            "type": "AIRCRAFT",
-            "data": data,
-            "timestamp": asyncio.get_event_loop().time()
-        }
-        await self.broadcast_to_clients(message)
+    async def broadcast_vessel_data(self, current: list):
+        """Broadcasts only the changed/new vessels (diff) to save bandwidth."""
+        current_map = {v['mmsi']: v for v in current}
+        
+        updated = [
+            v for mmsi, v in current_map.items()
+            if mmsi not in self.last_vessel_state or 
+            self.last_vessel_state[mmsi].get('lat') != v.get('lat') or
+            self.last_vessel_state[mmsi].get('lon') != v.get('lon')
+        ]
+        
+        removed = [
+            mmsi for mmsi in self.last_vessel_state
+            if mmsi not in current_map
+        ]
+        
+        if updated or removed:
+            message = {
+                "type": "VESSEL_DIFF",
+                "payload": {
+                    "updated": updated,
+                    "removed": removed
+                },
+                "timestamp": asyncio.get_event_loop().time()
+            }
+            await self.broadcast_to_clients(message)
+            self.last_vessel_state = current_map
+
+    async def broadcast_aircraft_data(self, current: list):
+        """Broadcasts only the changed/new aircraft (diff)."""
+        # Assuming aircraft have a unique 'callsign' or 'icao24'
+        current_map = {a['callsign']: a for a in current}
+        
+        updated = [
+            a for callsign, a in current_map.items()
+            if callsign not in self.last_aircraft_state or 
+            self.last_aircraft_state[callsign].get('lat') != a.get('lat') or
+            self.last_aircraft_state[callsign].get('lon') != a.get('lon')
+        ]
+        
+        removed = [
+            callsign for callsign in self.last_aircraft_state
+            if callsign not in current_map
+        ]
+        
+        if updated or removed:
+            message = {
+                "type": "AIRCRAFT_DIFF",
+                "payload": {
+                    "updated": updated,
+                    "removed": removed
+                },
+                "timestamp": asyncio.get_event_loop().time()
+            }
+            await self.broadcast_to_clients(message)
+            self.last_aircraft_state = current_map
 
     async def _broadcast_trade(self, trades: list):
         """Normalize and broadcast Finnhub trade data."""

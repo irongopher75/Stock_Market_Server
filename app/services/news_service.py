@@ -51,9 +51,13 @@ SENTIMENT_BULL = {"surge", "rally", "upgrade", "beat", "record high", "strong", 
 SENTIMENT_BEAR = {"crash", "plunge", "collapse", "downgrade", "miss", "record low", "weak", "layoffs", "default"}
 
 
+from textblob import TextBlob
+
 def _classify(text: str) -> Dict:
-    """Returns category, severity (0-100), sentiment for a news headline+summary."""
+    """Returns category, severity (0-100), sentiment, and color for a news headline+summary."""
     lower = text.lower()
+    blob = TextBlob(text)
+    sentiment_score = blob.sentiment.polarity # -1.0 to 1.0
 
     # Category
     category = "GENERAL"
@@ -69,7 +73,7 @@ def _classify(text: str) -> Dict:
             score += pts
     severity_score = min(score, 100)
 
-    # Label
+    # Label (RED/AMBER/GREEN)
     if severity_score >= 20:
         severity = "RED"
     elif severity_score >= 10:
@@ -77,12 +81,25 @@ def _classify(text: str) -> Dict:
     else:
         severity = "GREEN"
 
-    # Sentiment
-    bull = sum(1 for w in SENTIMENT_BULL if w in lower)
-    bear = sum(1 for w in SENTIMENT_BEAR if w in lower)
-    sentiment = "BULLISH" if bull > bear else "BEARISH" if bear > bull else "NEUTRAL"
+    # Sentiment Mapping
+    if sentiment_score > 0.1:
+        sentiment = "BULLISH"
+        sentiment_color = "#00FF41" # Neon Green
+    elif sentiment_score < -0.1:
+        sentiment = "BEARISH"
+        sentiment_color = "#FF2244" # Neon Red
+    else:
+        sentiment = "NEUTRAL"
+        sentiment_color = "#FFCC00" # Neon Amber/Yellow
 
-    return {"category": category, "severity": severity, "severity_score": severity_score, "sentiment": sentiment}
+    return {
+        "category": category, 
+        "severity": severity, 
+        "severity_score": severity_score, 
+        "sentiment": sentiment,
+        "sentiment_score": round(sentiment_score, 2),
+        "sentiment_color": sentiment_color
+    }
 
 
 class NewsIntelligenceService:

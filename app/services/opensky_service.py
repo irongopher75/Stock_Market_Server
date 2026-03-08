@@ -52,6 +52,8 @@ class OpenSkyService:
         self._is_running  = False
         self._cache: List[Dict] = []
         self._last_update: float = 0
+        self.daily_calls = 0  # Tracking for adaptive budget
+        self.current_interval = POLL_INTERVAL
 
         if OPENSKY_USER and OPENSKY_PASS:
             self._auth = httpx.BasicAuth(OPENSKY_USER, OPENSKY_PASS)
@@ -65,7 +67,7 @@ class OpenSkyService:
             return
         self._is_running = True
         asyncio.create_task(self._poll_loop())
-        logger.info("OpenSky Service started (polling every 30s)")
+        logger.info("OpenSky Service started (Adaptive polling enabled)")
 
     async def stop(self):
         self._is_running = False
@@ -73,34 +75,43 @@ class OpenSkyService:
     async def get_flights(self) -> List[Dict]:
         """Returns cached flight list for REST endpoints. Refreshes if stale."""
         import time
-        if time.time() - self._last_update > POLL_INTERVAL or not self._cache:
+        if time.time() - self._last_update > self.current_interval or not self._cache:
             await self._fetch_and_update()
         return self._cache
 
     async def _poll_loop(self):
         while self._is_running:
             await self._fetch_and_update()
-            # Broadcast to WebSocket clients
+            
+            # Broadcast incremental diffs via WS Manager
             if self.ws_manager and self._cache:
-                await self.ws_manager.broadcast_to_clients({
-                    "type":    "AIRCRAFT",
-                    "flights": self._cache[:200],
-                })
-            await asyncio.sleep(POLL_INTERVAL)
+                await self.ws_manager.broadcast_aircraft_data(self._cache[:300])
+            
+            # Adaptive interval logic
+            # Authenticated budget: 4000 calls/day. 
+            # Utilization factor scales interval from 10s to 60s.
+            limit = 4000 if self._auth else 100
+            utilization = self.daily_calls / limit
+            self.current_interval = 10 + (utilization * 50) 
+            
+            await asyncio.sleep(self.current_interval)
 
     async def _fetch_and_update(self):
         import time
         try:
             async with httpx.AsyncClient(timeout=15, auth=self._auth) as client:
                 resp = await client.get(f"{BASE_URL}/states/all")
+                self.daily_calls += 1
+                
                 if resp.status_code == 200:
                     data = resp.json()
                     states = data.get("states") or []
                     self._cache = [self._normalize(s) for s in states if s[5] and s[6]]  # must have lon/lat
                     self._last_update = time.time()
-                    logger.info(f"OpenSky: fetched {len(self._cache)} aircraft")
+                    logger.info(f"OpenSky: fetched {len(self._cache)} aircraft (Daily calls: {self.daily_calls})")
                 elif resp.status_code == 429:
-                    logger.warning("OpenSky: rate limited (429) — will retry after poll interval")
+                    logger.warning("OpenSky: rate limited (429) — cooling down")
+                    self.current_interval = 300 # 5 min cooldown
                 else:
                     logger.warning(f"OpenSky API error: {resp.status_code}")
         except Exception as e:
