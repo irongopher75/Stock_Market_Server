@@ -193,10 +193,19 @@ class WebSocketManager:
                 ssl_context.verify_mode = ssl.CERT_NONE
                 async with websockets.connect(uri, ssl=ssl_context) as websocket:
                     self.connections["finnhub"] = websocket
-                    # Auto-subscribe to a default set for testing
-                    stocks = ["AAPL", "NVDA", "TSLA", "BINANCE:BTCUSDT"]
-                    for s in stocks:
-                        await websocket.send(json.dumps({"type": "subscribe", "symbol": s}))
+                    
+                    # Import here to avoid circular dependencies
+                    from app.api.quotes import AXIOM_WATCHLIST
+                    
+                    # Automagically subscribe to everything in our watchlist
+                    for display_name, yf_ticker in AXIOM_WATCHLIST.items():
+                        # Finnhub mostly uses standard tickers, but crypto needs prefix
+                        # We'll try to subscribe to the display_name or mapped ticker
+                        symbol_to_sub = display_name
+                        if "USDT" in display_name:
+                            symbol_to_sub = f"BINANCE:{display_name}"
+                        
+                        await websocket.send(json.dumps({"type": "subscribe", "symbol": symbol_to_sub}))
 
                     async for message in websocket:
                         if not self._is_running: break

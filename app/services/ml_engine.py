@@ -1,8 +1,8 @@
 import pandas as pd
 import numpy as np
 from app.core import config
-from data_router import DataRouter
-from regime_detector import RegimeDetector, MarketRegime
+from app.services.data_router import DataRouter
+from app.utils.regime_detector import RegimeDetector, MarketRegime
 import logging
 
 logger = logging.getLogger(__name__)

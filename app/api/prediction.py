@@ -11,7 +11,7 @@ from app.core import config
 import asyncio
 from typing import List, Dict
 from datetime import datetime, timedelta, timezone
-from trading_manager import TradingManager
+from app.services.trading_manager import TradingManager
 
 router = APIRouter(prefix="/api/v1/predict", tags=["prediction"])
 trading_mgr = TradingManager()
