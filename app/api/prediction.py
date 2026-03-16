@@ -12,6 +12,7 @@ import asyncio
 from typing import List, Dict
 from datetime import datetime, timedelta, timezone
 from app.services.trading_manager import TradingManager
+from app.services.ai_auditor import AIAuditor
 
 router = APIRouter(prefix="/api/v1/predict", tags=["prediction"])
 trading_mgr = TradingManager()
@@ -77,6 +78,11 @@ async def get_prediction(
             
             # Use to_thread for CPU-bound indicator and prediction logic
             result = await asyncio.to_thread(analyzer.predict_direction)
+            
+            # --- AI AWARENESS LAYER (The Auditor) ---
+            auditor = AIAuditor()
+            result = await asyncio.to_thread(auditor.verify_prediction, result, analyzer.signals)
+            # ----------------------------------------
             
             # --- DEDUPLICATION LOGIC ---
             # Use configured deduplication window

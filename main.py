@@ -10,9 +10,7 @@ from contextlib import asynccontextmanager
 import asyncio
 import os
 from dotenv import load_dotenv
-
 load_dotenv()
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     try:
@@ -31,12 +29,10 @@ async def lifespan(app: FastAPI):
     # Shutdown logic
     await ws_manager.stop()
     print("WebSocket Manager Stopped.")
-
 app = FastAPI(
     title="Stock Market Dashboard API",
     lifespan=lifespan
 )
-
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request: Request, exc: RequestValidationError):
     import logging
@@ -45,7 +41,6 @@ async def validation_exception_handler(request: Request, exc: RequestValidationE
         status_code=422,
         content={"detail": exc.errors()},
     )
-
 # CORS Configuration
 # Include both localhost and 127.0.0.1 to prevent mismatches
 origins = [
@@ -59,7 +54,6 @@ origins = [
     "http://0.0.0.0:5174",
     "http://0.0.0.0:5175",
 ]
-
 # Allow additional origins from environment variable
 env_origins = os.getenv("CORS_ORIGINS")
 if env_origins:
@@ -67,15 +61,20 @@ if env_origins:
         origins = ["*"]
     else:
         origins.extend([o.strip() for o in env_origins.split(",") if o.strip()])
+else:
+    # Default to accepting any origin in production if not explicitly set 
+    # Note: For production use with allow_credentials=True, specific origins must be provided,
+    # but for generalized access, we'll append a wildcard regex pattern.
+    pass
 
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
+    allow_origin_regex=r"https://.*" if not env_origins else None,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
-
 # Optional diagnostic middleware to log headers in dev
 @app.middleware("http")
 async def log_origin(request: Request, call_next):
@@ -85,7 +84,6 @@ async def log_origin(request: Request, call_next):
         logging.info(f"Incoming Request Origin: {origin}")
     response = await call_next(request)
     return response
-
 # Include Routers
 app.include_router(users.router)
 app.include_router(admin.router)
@@ -97,11 +95,9 @@ app.include_router(quotes.router)
 app.include_router(news.router)
 app.include_router(flights.router)
 app.include_router(search.router)
-
 @app.get("/")
 def read_root():
     return {"message": "Stock Market Dashboard API is running."}
-
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)

@@ -106,13 +106,13 @@ class MarketAnalyzer:
         Interface for real-time prediction using vectorized logic.
         """
         self.calculate_indicators()
-        df_signals = self.generate_vectorized_signals()
+        self.signals = self.generate_vectorized_signals()
         
         # Current Regime Handling
-        regime = self.regime_detector.detect_regime(df_signals)
+        regime = self.regime_detector.detect_regime(self.signals)
         weights = self.regime_detector.get_strategy_weights(regime)
         
-        last_row = df_signals.iloc[-1]
+        last_row = self.signals.iloc[-1]
         
         # Weighted Composite Score
         total_score = (
@@ -132,6 +132,7 @@ class MarketAnalyzer:
             confidence = min(0.6 + (abs(total_score) * 0.1), 0.95)
             
         return self._sanitize({
+            "symbol": self.symbol,
             "prediction": prediction,
             "confidence": round(confidence, 2),
             "regime": regime.value,
