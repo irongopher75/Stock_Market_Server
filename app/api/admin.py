@@ -3,7 +3,7 @@ from app.db import models, schemas
 from app.core import auth
 from typing import List
 
-router = APIRouter(prefix="/admin", tags=["admin"])
+router = APIRouter(prefix="/api/v1/admin", tags=["admin"])
 
 @router.get("/pending-users", response_model=List[schemas.User])
 async def get_pending_users(current_user: models.User = Depends(auth.get_current_admin)):
