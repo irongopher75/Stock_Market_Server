@@ -101,29 +101,32 @@ async def get_batch_quotes(symbols: str = ""):
 async def get_macro_yields():
     """Returns real-time sovereign yield curve data using yfinance Treasury symbols."""
     symbols = {
-        'US': {'3M': '^IRX', '5Y': '^FVX', '10Y': '^TNX', '30Y': '^TYX'},
+        'US': {'3M': '^IRX', '2Y': '^ZT', '5Y': '^FVX', '10Y': '^TNX', '30Y': '^TYX'},
     }
     
-    results = {'US': [], 'IN': [
-        {'maturity': '3M', 'yield': 6.75}, {'maturity': '1Y', 'yield': 6.82}, {'maturity': '2Y', 'yield': 6.88},
-        {'maturity': '5Y', 'yield': 6.98}, {'maturity': '10Y', 'yield': 7.12}, {'maturity': '30Y', 'yield': 7.35}
-    ]}
+    results = {'US': []}
     
     try:
         us_tickers = list(symbols['US'].values())
-        data = yf.download(us_tickers, period="2d", progress=False, threads=True)
+        data = yf.download(us_tickers, period="2d", interval="1d", progress=False, threads=True)
         if not data.empty and "Close" in data:
-            close_data = data["Close"]
             for maturity, ticker in symbols['US'].items():
                 try:
-                    series = close_data[ticker].dropna()
+                    series = data["Close"][ticker].dropna() if len(us_tickers) > 1 else data["Close"].dropna()
                     if not series.empty:
                         val = float(series.iloc[-1])
-                        results['US'].append({'maturity': maturity, 'yield': round(val, 2)})
-                except:
+                        prev = float(series.iloc[-2]) if len(series) > 1 else val
+                        chg_bps = (val - prev) * 100 if prev else 0.0
+                        results['US'].append({
+                            'maturity': maturity, 
+                            'yield': round(val, 3), # IRX is actually a discount yield but close enough
+                            'chg_bps': round(chg_bps, 1),
+                            'up': chg_bps >= 0
+                        })
+                except Exception:
                     pass
     except Exception as e:
-        logger.error(f"Failed to fetch macro yields: {e}")
+        logger.error(f"Failed to fetch US yields: {e}")
         
     return results
 
@@ -131,6 +134,7 @@ async def get_macro_yields():
 async def get_macro_fx():
     """Returns real-time Forex rates."""
     pairs = {
+        'DX-Y.NYB': 'DXY',
         'USDINR=X': 'USD/INR',
         'EURUSD=X': 'EUR/USD',
         'GBPUSD=X': 'GBP/USD',
@@ -150,13 +154,82 @@ async def get_macro_fx():
                         prev = float(series.iloc[-2]) if len(series) > 1 else price
                         chg_pct = ((price - prev) / prev) * 100 if prev else 0.0
                         results.append({
-                            'pair': label,
-                            'rate': round(price, 4) if price < 100 else round(price, 2),
-                            'chg': f"{'+' if chg_pct >= 0 else ''}{round(chg_pct, 2)}%",
+                            'symbol': label,
+                            'price': round(price, 4) if price < 100 else round(price, 2),
+                            'change_pct': round(chg_pct, 2),
                             'up': chg_pct >= 0
                         })
                 except Exception:
                     pass
     except Exception as e:
         logger.error(f"Failed to fetch FX rates: {e}")
-    return results
+    return {"assets": results}
+
+@router.get("/macro/commodities")
+async def get_macro_commodities():
+    """Returns real-time Commodities prices."""
+    pairs = {
+        'CL=F': 'WTI Crude',
+        'BZ=F': 'Brent Crude',
+        'NG=F': 'Natural Gas',
+        'GC=F': 'Gold',
+        'SI=F': 'Silver',
+        'HG=F': 'Copper'
+    }
+    results = []
+    try:
+        data = yf.download(list(pairs.keys()), period="2d", interval="1d", progress=False, threads=True)
+        if not data.empty and "Close" in data:
+            for ticker, label in pairs.items():
+                try:
+                    series = data["Close"][ticker].dropna() if len(pairs) > 1 else data["Close"].dropna()
+                    if not series.empty:
+                        price = float(series.iloc[-1])
+                        prev = float(series.iloc[-2]) if len(series) > 1 else price
+                        chg_pct = ((price - prev) / prev) * 100 if prev else 0.0
+                        results.append({
+                            'symbol': label,
+                            'price': round(price, 2),
+                            'change_pct': round(chg_pct, 2),
+                            'up': chg_pct >= 0
+                        })
+                except Exception:
+                    pass
+    except Exception as e:
+        logger.error(f"Failed to fetch commodity rates: {e}")
+    return {"assets": results}
+
+@router.get("/macro/crypto")
+async def get_macro_crypto():
+    """Returns real-time Crypto prices."""
+    pairs = {
+        'BTC-USD': 'Bitcoin',
+        'ETH-USD': 'Ethereum',
+        'SOL-USD': 'Solana',
+        'BNB-USD': 'BNB',
+        'XRP-USD': 'XRP',
+        'DOGE-USD': 'Dogecoin'
+    }
+    results = []
+    try:
+        data = yf.download(list(pairs.keys()), period="2d", interval="1d", progress=False, threads=True)
+        if not data.empty and "Close" in data:
+            for ticker, label in pairs.items():
+                try:
+                    series = data["Close"][ticker].dropna() if len(pairs) > 1 else data["Close"].dropna()
+                    if not series.empty:
+                        price = float(series.iloc[-1])
+                        prev = float(series.iloc[-2]) if len(series) > 1 else price
+                        chg_pct = ((price - prev) / prev) * 100 if prev else 0.0
+                        
+                        results.append({
+                            'symbol': label,
+                            'price': round(price, 4) if price < 1 else round(price, 2),
+                            'change_pct': round(chg_pct, 2),
+                            'up': chg_pct >= 0
+                        })
+                except Exception:
+                    pass
+    except Exception as e:
+        logger.error(f"Failed to fetch crypto rates: {e}")
+    return {"assets": results}
