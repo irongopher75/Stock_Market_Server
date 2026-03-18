@@ -19,6 +19,8 @@ class AISService:
         self._is_running = False
         self._cache: Dict[str, Dict] = {} # mmsi -> normalized_data
         self._last_update = 0
+        self.MAX_VESSELS = 5000
+        self.TTL_SECONDS = 1800  # 30 minutes
 
     async def start(self):
         if self._is_running:
@@ -52,7 +54,8 @@ class AISService:
             "destination": "---",
             "speed": 0,
             "heading": 0,
-            "flag": "---"
+            "flag": "---",
+            "last_seen": time.time()
         })
 
         if msg_type == "PositionReport":
@@ -69,6 +72,7 @@ class AISService:
             existing["destination"] = static.get("Destination", existing["destination"]).strip()
             # simple flag mapping placeholder or extracted from metadata if possible
             
+        existing["last_seen"] = time.time()
         return existing
 
     async def _stream_loop(self):
@@ -102,6 +106,18 @@ class AISService:
                         
                         # Throttle broadcasts to once every 2 seconds to avoid flooding frontend
                         if time.time() - self._last_update > 2:
+                            now = time.time()
+                            
+                            # 1. TTL Eviction: Remove stale vessels
+                            stale_keys = [k for k, v in self._cache.items() if now - v.get("last_seen", now) > self.TTL_SECONDS]
+                            for k in stale_keys:
+                                del self._cache[k]
+                            
+                            # 2. Hard Cap Eviction: Keep only the most recently seen if over limit
+                            if len(self._cache) > self.MAX_VESSELS:
+                                sorted_cache = sorted(self._cache.items(), key=lambda x: x[1].get("last_seen", 0))
+                                self._cache = dict(sorted_cache[-self.MAX_VESSELS:])
+
                             # Send the whole visible fleet to all terminals (WS Manager now handles the diff)
                             await self.ws_manager.broadcast_vessel_data(list(self._cache.values())[:300]) 
                             self._last_update = time.time()
