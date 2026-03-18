@@ -1,6 +1,7 @@
 from fastapi import APIRouter, Depends, HTTPException
 from app.db import models, schemas
 from app.core import auth
+from datetime import datetime
 from typing import List
 
 router = APIRouter(prefix="/trades", tags=["trades"])

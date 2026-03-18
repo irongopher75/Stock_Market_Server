@@ -20,3 +20,4 @@ redis
 aiohttp
 websockets
 textblob
+deep-translator

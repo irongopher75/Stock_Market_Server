@@ -3,7 +3,7 @@ from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 from fastapi.middleware.cors import CORSMiddleware
 from app.db.database import init_db
-from app.api import users, admin, prediction, trades, backtest, terminal, quotes, news, flights, search
+from app.api import users, admin, prediction, trades, backtest, terminal, quotes, news, flights, search, ai
 from app.services.websocket_manager import ws_manager
 from app.services.news_service import news_service as _news_svc
 from contextlib import asynccontextmanager
@@ -95,6 +95,7 @@ app.include_router(quotes.router)
 app.include_router(news.router)
 app.include_router(flights.router)
 app.include_router(search.router)
+app.include_router(ai.router, prefix="/api/v1/ai", tags=["ai"])
 @app.get("/")
 def read_root():
     return {"message": "Stock Market Dashboard API is running."}

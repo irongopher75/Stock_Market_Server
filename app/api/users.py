@@ -8,18 +8,26 @@ router = APIRouter(prefix="/users", tags=["users"])
 
 @router.post("/register", response_model=schemas.User)
 async def register(user_in: schemas.UserCreate):
-    user = await models.User.find_one(models.User.email == user_in.email)
-    if user:
-        raise HTTPException(status_code=400, detail="User already registered")
-    
-    new_user = models.User(
-        email=user_in.email,
-        hashed_password=auth.get_password_hash(user_in.password),
-        is_active=True,
-        is_approved=True # Auto-approve for local dev
-    )
-    await new_user.insert()
-    return new_user
+    try:
+        user = await models.User.find_one(models.User.email == user_in.email)
+        if user:
+            raise HTTPException(status_code=400, detail="User already registered")
+        
+        new_user = models.User(
+            email=user_in.email,
+            hashed_password=auth.get_password_hash(user_in.password),
+            is_active=True,
+            is_approved=True # Auto-approve for local dev
+        )
+        await new_user.insert()
+        return new_user
+    except HTTPException:
+        raise
+    except Exception as e:
+        import traceback
+        with open("server_error.log", "a") as f:
+            f.write(f"Registration Error: {traceback.format_exc()}\n")
+        raise HTTPException(status_code=400, detail=str(e))
 
 @router.post("/token", response_model=schemas.Token)
 async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):

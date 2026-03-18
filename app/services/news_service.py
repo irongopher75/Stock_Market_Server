@@ -11,6 +11,7 @@ import re
 from datetime import datetime, timezone
 from typing import List, Dict
 from dotenv import load_dotenv
+from deep_translator import GoogleTranslator
 
 load_dotenv()
 logger = logging.getLogger(__name__)
@@ -142,6 +143,22 @@ class NewsIntelligenceService:
 
         # Sort: by severity_score DESC, then recency
         ranked.sort(key=lambda x: (x["severity_score"], x["published_at"]), reverse=True)
+
+        # Translate all the scraped news in English only
+        async def translate_article(a: Dict):
+            translator = GoogleTranslator(source='auto', target='en')
+            try:
+                if a.get("headline"):
+                    a["headline"] = await asyncio.to_thread(translator.translate, a["headline"])
+                if a.get("summary"):
+                    a["summary"] = await asyncio.to_thread(translator.translate, a["summary"])
+            except Exception as e:
+                logger.warning(f"Translation failed for {a.get('headline', '')[:20]}: {e}")
+            return a
+
+        # Translate top articles concurrently (limiting to 60 to avoid Google API rate limits on massive lists)
+        translated_ranked = await asyncio.gather(*(translate_article(a) for a in ranked[:60]))
+        ranked[:60] = translated_ranked
 
         self._cache = ranked
         self._last_update = datetime.now(timezone.utc).timestamp()

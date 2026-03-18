@@ -104,7 +104,7 @@ class AISService:
                         if time.time() - self._last_update > 2:
                             # Send the whole visible fleet to all terminals (WS Manager now handles the diff)
                             await self.ws_manager.broadcast_vessel_data(list(self._cache.values())[:300]) 
-                            self._last_update = now
+                            self._last_update = time.time()
 
             except Exception as e:
                 logger.error(f"AIS Stream error: {e}. Reconnecting in 10s...")
