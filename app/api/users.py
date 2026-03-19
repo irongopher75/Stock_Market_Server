@@ -17,7 +17,7 @@ async def register(user_in: schemas.UserCreate):
             email=user_in.email,
             hashed_password=auth.get_password_hash(user_in.password),
             is_active=True,
-            is_approved=True # Auto-approve for local dev
+            is_approved=False # Hotfix: require admin approval
         )
         await new_user.insert()
         return new_user
