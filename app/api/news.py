@@ -1,4 +1,7 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Depends, Request
+from app.db import models
+from app.core import auth
+from main import limiter
 from app.services.news_service import news_service
 import logging
 
@@ -8,10 +11,13 @@ logger = logging.getLogger(__name__)
 VALID_CATEGORIES = {"ALL", "VESSEL", "AVIATION", "GEOPOLITICS", "COMMODITY", "CRYPTO", "MACRO", "EQUITY", "GEO", "GENERAL"}
 
 @router.get("/feed")
+@limiter.limit("20/minute")
 async def get_news_feed(
+    request: Request,
     category: str = Query("ALL", description="Filter by category"),
     limit: int = Query(40, ge=1, le=100),
     severity: str = Query("ALL", description="Filter: ALL / RED / AMBER / GREEN"),
+    current_user: models.User = Depends(auth.get_current_active_user)
 ):
     """
     Returns real, ranked, categorized news from Finnhub and GDELT.
@@ -41,7 +47,11 @@ async def get_news_feed(
         }
 
 @router.post("/refresh")
-async def force_refresh():
+@limiter.limit("5/minute")
+async def force_refresh(
+    request: Request,
+    current_user: models.User = Depends(auth.get_current_active_user)
+):
     """Force refresh the news cache."""
     news_service._last_update = 0
     articles = await news_service.get_feed()

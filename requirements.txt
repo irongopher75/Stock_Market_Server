@@ -21,3 +21,4 @@ aiohttp
 websockets
 textblob
 deep-translator
+slowapi

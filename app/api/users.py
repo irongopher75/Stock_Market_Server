@@ -1,13 +1,15 @@
-from fastapi import APIRouter, Depends, HTTPException, status
+from fastapi import APIRouter, Depends, HTTPException, status, Request
 from fastapi.security import OAuth2PasswordRequestForm
 from app.db import models, schemas
 from app.core import auth
 from datetime import timedelta
+from main import limiter
 
 router = APIRouter(prefix="/users", tags=["users"])
 
 @router.post("/register", response_model=schemas.User)
-async def register(user_in: schemas.UserCreate):
+@limiter.limit("5/minute")
+async def register(request: Request, user_in: schemas.UserCreate):
     try:
         user = await models.User.find_one(models.User.email == user_in.email)
         if user:
@@ -30,7 +32,8 @@ async def register(user_in: schemas.UserCreate):
         raise HTTPException(status_code=400, detail=str(e))
 
 @router.post("/token", response_model=schemas.Token)
-async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends()):
+@limiter.limit("10/minute")
+async def login_for_access_token(request: Request, form_data: OAuth2PasswordRequestForm = Depends()):
     try:
         user = await models.User.find_one(models.User.email == form_data.username)
         if not user or not auth.verify_password(form_data.password, user.hashed_password):

@@ -1,4 +1,7 @@
-from fastapi import APIRouter, Query
+from fastapi import APIRouter, Query, Depends, Request
+from app.db import models
+from app.core import auth
+from main import limiter
 import requests
 import logging
 from typing import List, Dict
@@ -7,7 +10,12 @@ router = APIRouter(prefix="/api/v1/search", tags=["Search"])
 logger = logging.getLogger(__name__)
 
 @router.get("")
-async def search_symbols(q: str = Query(..., min_length=1)):
+@limiter.limit("30/minute")
+async def search_symbols(
+    request: Request,
+    q: str = Query(..., min_length=1),
+    current_user: models.User = Depends(auth.get_current_active_user)
+):
     """
     Proxy search requests to Yahoo Finance to discover symbols globally.
     Returns normalized objects for the frontend search-suggest UI.

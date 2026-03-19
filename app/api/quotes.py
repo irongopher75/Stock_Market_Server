@@ -1,5 +1,9 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends, Request
+from app.db import models
+from app.core import auth
+from main import limiter
 import yfinance as yf
+from app.utils.resilience import retry_on_failure
 import logging
 from typing import List
 
@@ -37,7 +41,13 @@ AXIOM_WATCHLIST = {
 }
 
 @router.get("/batch")
-async def get_batch_quotes(symbols: str = ""):
+@limiter.limit("60/minute")
+@retry_on_failure(retries=2)
+async def get_batch_quotes(
+    request: Request,
+    symbols: str = "",
+    current_user: models.User = Depends(auth.get_current_active_user)
+):
     """
     Returns last-traded prices for requested symbols (or AXIOM_WATCHLIST defaults).
     Used to seed the terminal with real-world data for any asset.
@@ -98,7 +108,12 @@ async def get_batch_quotes(symbols: str = ""):
     return results
 
 @router.get("/macro/yields")
-async def get_macro_yields():
+@limiter.limit("20/minute")
+@retry_on_failure(retries=2)
+async def get_macro_yields(
+    request: Request,
+    current_user: models.User = Depends(auth.get_current_active_user)
+):
     """Returns real-time sovereign yield curve data using yfinance Treasury symbols."""
     symbols = {
         'US': {'3M': '^IRX', '2Y': '^ZT', '5Y': '^FVX', '10Y': '^TNX', '30Y': '^TYX'},
@@ -131,7 +146,12 @@ async def get_macro_yields():
     return results
 
 @router.get("/macro/fx")
-async def get_macro_fx():
+@limiter.limit("20/minute")
+@retry_on_failure(retries=2)
+async def get_macro_fx(
+    request: Request,
+    current_user: models.User = Depends(auth.get_current_active_user)
+):
     """Returns real-time Forex rates."""
     pairs = {
         'DX-Y.NYB': 'DXY',
@@ -166,7 +186,12 @@ async def get_macro_fx():
     return {"assets": results}
 
 @router.get("/macro/commodities")
-async def get_macro_commodities():
+@limiter.limit("20/minute")
+@retry_on_failure(retries=2)
+async def get_macro_commodities(
+    request: Request,
+    current_user: models.User = Depends(auth.get_current_active_user)
+):
     """Returns real-time Commodities prices."""
     pairs = {
         'CL=F': 'WTI Crude',
@@ -200,7 +225,12 @@ async def get_macro_commodities():
     return {"assets": results}
 
 @router.get("/macro/crypto")
-async def get_macro_crypto():
+@limiter.limit("20/minute")
+@retry_on_failure(retries=2)
+async def get_macro_crypto(
+    request: Request,
+    current_user: models.User = Depends(auth.get_current_active_user)
+):
     """Returns real-time Crypto prices."""
     pairs = {
         'BTC-USD': 'Bitcoin',

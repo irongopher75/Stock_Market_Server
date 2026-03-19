@@ -1,12 +1,14 @@
 from fastapi import APIRouter, Depends, HTTPException
 from app.db import models, schemas
 from app.core import auth
+from app.utils.resilience import retry_on_failure
 from datetime import datetime
 from typing import List
 
 router = APIRouter(prefix="/trades", tags=["trades"])
 
 @router.get("/active", response_model=List[models.Trade])
+@retry_on_failure(retries=2)
 async def get_active_positions(
     current_user: models.User = Depends(auth.get_current_active_user)
 ):
@@ -57,6 +59,7 @@ async def get_trade_history(
     ).sort("-exit_timestamp").to_list()
 
 @router.get("/performance")
+@retry_on_failure(retries=2)
 async def get_performance_snapshot(
     current_user: models.User = Depends(auth.get_current_active_user)
 ):

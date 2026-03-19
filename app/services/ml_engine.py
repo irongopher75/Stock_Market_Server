@@ -3,6 +3,7 @@ import numpy as np
 from app.core import config
 from app.services.data_router import DataRouter
 from app.utils.regime_detector import RegimeDetector, MarketRegime
+from app.utils.resilience import retry_on_failure
 import logging
 
 logger = logging.getLogger(__name__)
@@ -14,7 +15,8 @@ class MarketAnalyzer:
         self.router = DataRouter()
         self.regime_detector = RegimeDetector()
 
-    async def fetch_data(self, period="1mo", interval="1h"):
+    @retry_on_failure(retries=3)
+    async def fetch_data(self, symbol: str, period: str = "1mo", interval: str = "1h"):
         """Fetches data via the DataRouter and applies normalization."""
         self.data = await self.router.get_price_data(self.symbol, interval=interval, period=period)
         
