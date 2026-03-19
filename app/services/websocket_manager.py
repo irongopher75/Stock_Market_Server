@@ -23,6 +23,7 @@ class WebSocketManager:
         self.active_clients: Set[WebSocket] = set()
         self.connections: Dict[str, Any] = {}
         self.subscribers: Dict[str, Set[asyncio.Queue]] = {}
+        self.active_symbols: Set[str] = set() # Currently subscribed Finnhub symbols
         self._is_running = False
         
         # Lazy import to avoid circular dependency
@@ -183,6 +184,25 @@ class WebSocketManager:
             }
             await self.broadcast_to_clients(message)
 
+    async def subscribe_to_symbol(self, symbol: str):
+        """Dynamically subscribe to a new Finnhub symbol."""
+        if not self.connections.get("finnhub"):
+            return
+        
+        if symbol in self.active_symbols:
+            return
+
+        symbol_to_sub = symbol
+        if "USDT" in symbol:
+            symbol_to_sub = f"BINANCE:{symbol}"
+        
+        try:
+            await self.connections["finnhub"].send(json.dumps({"type": "subscribe", "symbol": symbol_to_sub}))
+            self.active_symbols.add(symbol)
+            logger.info(f"Dynamically subscribed to: {symbol}")
+        except Exception as e:
+            logger.error(f"Failed to subscribe to {symbol}: {e}")
+
     # --- Finnhub Internal Logic ---
     async def _finnhub_loop(self):
         uri = f"wss://ws.finnhub.io?token={self.finnhub_key}"
@@ -195,17 +215,24 @@ class WebSocketManager:
                     self.connections["finnhub"] = websocket
                     
                     # Import here to avoid circular dependencies
+                    # Gather all unique symbols from all approved users
+                    from app.db.models import User
                     from app.api.quotes import AXIOM_WATCHLIST
                     
-                    # Automagically subscribe to everything in our watchlist
-                    for display_name, yf_ticker in AXIOM_WATCHLIST.items():
-                        # Finnhub mostly uses standard tickers, but crypto needs prefix
-                        # We'll try to subscribe to the display_name or mapped ticker
-                        symbol_to_sub = display_name
-                        if "USDT" in display_name:
-                            symbol_to_sub = f"BINANCE:{display_name}"
-                        
-                        await websocket.send(json.dumps({"type": "subscribe", "symbol": symbol_to_sub}))
+                    users = await User.find(User.is_approved == True).to_list()
+                    initial_symbols = set(AXIOM_WATCHLIST.keys())
+                    for u in users:
+                        if u.watchlist:
+                            initial_symbols.update(u.watchlist)
+                    
+                    for symbol in initial_symbols:
+                        if symbol not in self.active_symbols:
+                            symbol_to_sub = symbol
+                            if "USDT" in symbol:
+                                symbol_to_sub = f"BINANCE:{symbol}"
+                            
+                            await websocket.send(json.dumps({"type": "subscribe", "symbol": symbol_to_sub}))
+                            self.active_symbols.add(symbol)
 
                     async for message in websocket:
                         if not self._is_running: break

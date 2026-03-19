@@ -50,10 +50,16 @@ async def get_batch_quotes(
     current_user: models.User = Depends(auth.get_current_active_user)
 ):
     """
-    Returns last-traded prices for requested symbols (or AXIOM_WATCHLIST defaults).
+    Returns last-traded prices for requested symbols (or user's watchlist).
     Used to seed the terminal with real-world data for any asset.
     """
-    requested_symbols = symbols.split(",") if symbols else list(AXIOM_WATCHLIST.keys())
+    if symbols:
+        requested_symbols = symbols.split(",")
+    elif current_user.watchlist:
+        requested_symbols = current_user.watchlist
+    else:
+        requested_symbols = list(AXIOM_WATCHLIST.keys())
+        
     results = {}
     
     # Map display names to yfinance tickers
@@ -63,6 +69,8 @@ async def get_batch_quotes(
         ticker_map[ticker] = sym
         
     tickers = list(ticker_map.keys())
+    if not tickers:
+        return {}
 
     try:
         # Fetch data via yfinance

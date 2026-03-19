@@ -28,8 +28,9 @@ async def lifespan(app: FastAPI):
     await ws_manager.stop()
 
 app = FastAPI(
-    title="Stock Market Dashboard API",
-    lifespan=lifespan
+    title="AXIOM",
+    description="Quantitative Intelligence Terminal",
+    version="3.0.0"
 )
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
@@ -92,7 +93,7 @@ app.include_router(ai.router, prefix="/api/v1/ai", tags=["ai"])
 
 @app.get("/")
 def read_root():
-    return {"message": "Stock Market Dashboard API is running."}
+    return {"message": "AXIOM API is running."}
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run("main:app", host="0.0.0.0", port=8000, reload=False)

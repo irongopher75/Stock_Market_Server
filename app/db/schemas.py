@@ -16,6 +16,7 @@ class User(UserBase):
     is_active: bool
     is_superuser: bool
     is_approved: bool
+    watchlist: List[str] = []
 
     class Config:
         from_attributes = True

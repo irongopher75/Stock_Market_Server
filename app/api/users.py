@@ -61,3 +61,26 @@ async def login_for_access_token(request: Request, form_data: OAuth2PasswordRequ
 @router.get("/me", response_model=schemas.User)
 async def read_users_me(current_user: models.User = Depends(auth.get_current_active_user)):
     return current_user
+
+@router.post("/watchlist/{symbol}")
+async def add_to_watchlist(symbol: str, current_user: models.User = Depends(auth.get_current_active_user)):
+    symbol = symbol.upper()
+    if current_user.watchlist is None:
+        current_user.watchlist = []
+    if symbol not in current_user.watchlist:
+        current_user.watchlist.append(symbol)
+        await current_user.save()
+        
+        # Proactively trigger WebSocket subscription if it's a new symbol
+        from app.services.websocket_manager import ws_manager
+        await ws_manager.subscribe_to_symbol(symbol)
+        
+    return current_user.watchlist
+
+@router.delete("/watchlist/{symbol}")
+async def remove_from_watchlist(symbol: str, current_user: models.User = Depends(auth.get_current_active_user)):
+    symbol = symbol.upper()
+    if current_user.watchlist and symbol in current_user.watchlist:
+        current_user.watchlist.remove(symbol)
+        await current_user.save()
+    return current_user.watchlist

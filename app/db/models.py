@@ -1,6 +1,6 @@
 from beanie import Document
 from datetime import datetime, timezone
-from typing import Optional
+from typing import Optional, List
 from pydantic import Field
 
 class User(Document):
@@ -9,6 +9,7 @@ class User(Document):
     is_active: bool = True
     is_superuser: bool = False
     is_approved: bool = False
+    watchlist: List[str] = [] # User's personalized stock list
 
     class Settings:
         name = "users"
