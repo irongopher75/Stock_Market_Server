@@ -5,6 +5,7 @@ from main import limiter
 import yfinance as yf
 from app.utils.resilience import retry_on_failure
 import logging
+import math
 from typing import List
 
 router = APIRouter(prefix="/api/v1/quotes", tags=["quotes"])
@@ -91,6 +92,9 @@ async def get_batch_quotes(
                     if "USDT" in display_name or "-" in ticker: # Crypto
                         currency = "USDT"
 
+                    if math.isnan(price):
+                        continue
+
                     results[display_name] = {
                         "price": round(price, 2),
                         "prev_close": round(prev, 2),
@@ -132,11 +136,15 @@ async def get_macro_yields(
                         val = float(series.iloc[-1])
                         prev = float(series.iloc[-2]) if len(series) > 1 else val
                         chg_bps = (val - prev) * 100 if prev else 0.0
+                        
+                        if math.isnan(val):
+                             continue
+
                         results['US'].append({
                             'maturity': maturity, 
                             'yield': round(val, 3), # IRX is actually a discount yield but close enough
-                            'chg_bps': round(chg_bps, 1),
-                            'up': chg_bps >= 0
+                            'chg_bps': round(chg_bps, 1) if not math.isnan(chg_bps) else 0.0,
+                            'up': chg_bps >= 0 if not math.isnan(chg_bps) else True
                         })
                 except Exception:
                     pass
@@ -173,11 +181,15 @@ async def get_macro_fx(
                         price = float(series.iloc[-1])
                         prev = float(series.iloc[-2]) if len(series) > 1 else price
                         chg_pct = ((price - prev) / prev) * 100 if prev else 0.0
+                        
+                        if math.isnan(price):
+                            continue
+
                         results.append({
                             'symbol': label,
                             'price': round(price, 4) if price < 100 else round(price, 2),
-                            'change_pct': round(chg_pct, 2),
-                            'up': chg_pct >= 0
+                            'change_pct': round(chg_pct, 2) if not math.isnan(chg_pct) else 0.0,
+                            'up': chg_pct >= 0 if not math.isnan(chg_pct) else True
                         })
                 except Exception:
                     pass
@@ -212,11 +224,15 @@ async def get_macro_commodities(
                         price = float(series.iloc[-1])
                         prev = float(series.iloc[-2]) if len(series) > 1 else price
                         chg_pct = ((price - prev) / prev) * 100 if prev else 0.0
+                        
+                        if math.isnan(price):
+                            continue
+
                         results.append({
                             'symbol': label,
                             'price': round(price, 2),
-                            'change_pct': round(chg_pct, 2),
-                            'up': chg_pct >= 0
+                            'change_pct': round(chg_pct, 2) if not math.isnan(chg_pct) else 0.0,
+                            'up': chg_pct >= 0 if not math.isnan(chg_pct) else True
                         })
                 except Exception:
                     pass
@@ -252,11 +268,14 @@ async def get_macro_crypto(
                         prev = float(series.iloc[-2]) if len(series) > 1 else price
                         chg_pct = ((price - prev) / prev) * 100 if prev else 0.0
                         
+                        if math.isnan(price):
+                            continue
+
                         results.append({
                             'symbol': label,
                             'price': round(price, 4) if price < 1 else round(price, 2),
-                            'change_pct': round(chg_pct, 2),
-                            'up': chg_pct >= 0
+                            'change_pct': round(chg_pct, 2) if not math.isnan(chg_pct) else 0.0,
+                            'up': chg_pct >= 0 if not math.isnan(chg_pct) else True
                         })
                 except Exception:
                     pass
