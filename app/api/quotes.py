@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Depends, Request
 from app.db import models
 from app.core import auth
-from main import limiter
+from app.core.limiter import limiter
 import yfinance as yf
 from app.utils.resilience import retry_on_failure
 import logging

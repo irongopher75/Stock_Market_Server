@@ -66,6 +66,21 @@ class WebSocketManager:
         await websocket.accept()
         self.active_clients.add(websocket)
         logger.info(f"Client connected. Active: {len(self.active_clients)}")
+        
+        # Send initial snapshots if data exists
+        if self.last_vessel_state or self.last_aircraft_state:
+            snapshot = {
+                "type": "SNAPSHOT",
+                "payload": {
+                    "vessels": list(self.last_vessel_state.values()),
+                    "aircraft": list(self.last_aircraft_state.values())
+                },
+                "timestamp": asyncio.get_event_loop().time()
+            }
+            try:
+                await websocket.send_text(json.dumps(snapshot))
+            except Exception as e:
+                logger.error(f"Failed to send initial snapshot: {e}")
 
     def disconnect_client(self, websocket: WebSocket):
         self.active_clients.remove(websocket)

@@ -1,7 +1,7 @@
 from fastapi import APIRouter, Query, Depends, Request
 from app.db import models
 from app.core import auth
-from main import limiter
+from app.core.limiter import limiter
 import requests
 import logging
 from typing import List, Dict

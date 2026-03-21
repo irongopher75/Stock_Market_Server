@@ -3,7 +3,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from app.db import models, schemas
 from app.core import auth
 from datetime import timedelta
-from main import limiter
+from app.core.limiter import limiter
 
 router = APIRouter(prefix="/users", tags=["users"])
 

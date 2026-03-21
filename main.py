@@ -1,8 +1,12 @@
-from slowapi import Limiter, _rate_limit_exceeded_handler
-from slowapi.util import get_remote_address
+from fastapi import FastAPI, Request
+from fastapi.responses import JSONResponse
+from fastapi.middleware.cors import CORSMiddleware
+from fastapi.exceptions import RequestValidationError
+from slowapi import _rate_limit_exceeded_handler
 from slowapi.errors import RateLimitExceeded
 from app.db.database import init_db
 from app.api import users, admin, prediction, trades, backtest, terminal, quotes, news, flights, search, ai
+from app.core.limiter import limiter
 from app.services.websocket_manager import ws_manager
 from app.services.news_service import news_service as _news_svc
 from contextlib import asynccontextmanager
@@ -14,7 +18,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Global Rate Limiter
-limiter = Limiter(key_func=get_remote_address)
+# (Imported from app.core.limiter)
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -30,7 +34,8 @@ async def lifespan(app: FastAPI):
 app = FastAPI(
     title="AXIOM",
     description="Quantitative Intelligence Terminal",
-    version="3.0.0"
+    version="3.0.0",
+    lifespan=lifespan
 )
 app.state.limiter = limiter
 app.add_exception_handler(RateLimitExceeded, _rate_limit_exceeded_handler)
